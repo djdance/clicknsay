@@ -13,10 +13,58 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    var centerContainer: MMDrawerController?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
+        NSUserDefaults.standardUserDefaults().registerDefaults([
+            "server" : "http://orgcom.ru",
+            "app_name" : "Электронный Референдум",
+            "defaultCityId" : 6,
+            "defaultCityName" : "Липецк",
+            "defaultCitySlogan" : "Открытый Липецк",
+            "pollFirst" : false,
+            "eye" : true,
+            "noMsg" : false,
+            "sendStat" : true,
+            ])
+        //print(NSUserDefaults.standardUserDefaults().dictionaryRepresentation())
+        //testfligt отладка http://code.tutsplus.com/ru/tutorials/ios-8-beta-testing-with-testflight--cms-22224
+        //https://developer.apple.com/library/mac/documentation/LanguagesUtilities/Conceptual/iTunesConnect_Guide_ru/Chapters/BetaTestingTheApp.html
+        
+        
+        _ = self.window!.rootViewController
+        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let centerViewController = mainStoryboard.instantiateViewControllerWithIdentifier("RootViewController") as! RootViewController
+        let leftViewController = mainStoryboard.instantiateViewControllerWithIdentifier("LeftSideViewController") as! LeftSideViewController
+        
+        let leftSideNav = UINavigationController(rootViewController: leftViewController)
+        let centerNav = UINavigationController(rootViewController: centerViewController)
+        
+        centerContainer = MMDrawerController(centerViewController: centerNav, leftDrawerViewController: leftSideNav)
+        centerContainer!.openDrawerGestureModeMask = MMOpenDrawerGestureMode.PanningCenterView;
+        centerContainer!.closeDrawerGestureModeMask = [.PanningCenterView, .TapCenterView];
+        centerContainer!.restorationIdentifier="drawerContainer"
+        centerContainer!.shadowRadius=2
+        centerContainer!.shouldStretchDrawer=false
+        centerContainer!.maximumLeftDrawerWidth=133
+        
+        window!.rootViewController = centerContainer
+        window!.makeKeyAndVisible()
+        
+        var deviceId: String? = KeychainWrapper.stringForKey("deviceId")
+        //print("deviceId on start: \(deviceId)")
+        if deviceId == nil {
+            deviceId=UIDevice.currentDevice().identifierForVendor!.UUIDString
+            var byteArray = [UInt8]()
+            for char in deviceId!.utf8{
+                byteArray += [char]
+            }
+            deviceId = "elrefI-\(CRC().crc32(byteArray))"
+            //print("deviceId got: \(deviceId)")
+            KeychainWrapper.setString(deviceId!, forKey: "deviceId")
+        }
+        //print("deviceId: \(deviceId)")
+
         return true
     }
 
@@ -106,6 +154,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     }
+
 
 }
 
