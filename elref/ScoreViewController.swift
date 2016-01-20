@@ -47,6 +47,10 @@ class ScoreViewController: UIViewController, UITableViewDataSource, UITableViewD
 
         scoreTable.delegate=self
         scoreTable.dataSource=self
+        
+        
+        scoreTable.layer.cornerRadius = 15
+        scoreTable.layer.masksToBounds = true
 
         updateUserScore()
     }

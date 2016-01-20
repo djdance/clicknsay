@@ -67,6 +67,7 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="checkbox" destination="FbZ-tB-c1Z" id="vfa-oD-b2N"/>
                 <outlet property="mainView" destination="jiQ-ZG-5RP" id="2e8-Zc-bpH"/>
                 <outlet property="titleLabel" destination="LXu-MH-NFZ" id="e0U-FH-Zqq"/>
             </connections>

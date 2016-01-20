@@ -1,6 +1,6 @@
 import UIKit
 
-class RootViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class RootViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, PollViewControllerDelegate {
     var drawerController: MMDrawerController!
     let cityId=NSUserDefaults.standardUserDefaults().integerForKey("cityId")
     let cityName=NSUserDefaults.standardUserDefaults().stringForKey("cityName")
@@ -8,6 +8,7 @@ class RootViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var json:JSON=nil
     var polls:JSON=nil
     var Vid=(NSUserDefaults.standardUserDefaults().boolForKey("pollFirst") ? 1 : 0)
+    var eye=(NSUserDefaults.standardUserDefaults().boolForKey("eye") ? 1 : 0)
 
     @IBOutlet weak var drawerButton: UIBarButtonItem!
     @IBOutlet weak var rootTable: UITableView!
@@ -42,10 +43,10 @@ class RootViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func updatePolls(){
         guard let server=NSUserDefaults.standardUserDefaults().stringForKey("server") else {
-            self.view.makeToast("Связь потеряна", duration: 2.0, position: .Center)
+            self.view.makeToast("Связь потеряна", duration: 2.0, position: .Bottom)
             return
         }
-        let urlPath = server+"/mob/getPolls.php?deviceId=\(KeychainWrapper.stringForKey("deviceId")!)&Vid=\(Vid)"
+        let urlPath = server+"/mob/getPolls.php?deviceId=\(KeychainWrapper.stringForKey("deviceId")!)&Vid=\(Vid)&eye=\(eye)"
         //print("updateUserProfile запрос \(urlPath)")
         self.view.makeToastActivity(.Center)
         UIApplication.sharedApplication().networkActivityIndicatorVisible=true
@@ -80,11 +81,11 @@ class RootViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
     func getMessages(){
         guard let server=NSUserDefaults.standardUserDefaults().stringForKey("server") else {
-            self.view.makeToast("Связь потеряна2", duration: 2.0, position: .Center)
+            self.view.makeToast("Связь потеряна2", duration: 2.0, position: .Bottom)
             return
         }
         guard let deviceId=KeychainWrapper.stringForKey("deviceId") else {
-            self.view.makeToast("Ошибка системы keychain 2", duration: 2.0, position: .Center)
+            self.view.makeToast("Ошибка системы keychain 2", duration: 2.0, position: .Bottom)
             return
         }
         let urlPath = server+"/mob/getUser.php?deviceId=\(deviceId)&messages=1"
@@ -110,6 +111,7 @@ class RootViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
     func updateUserProfile(){
         guard let servv=NSUserDefaults.standardUserDefaults().stringForKey("server") else {
+            self.view.makeToast("Связь потеряна3", duration: 2.0, position: .Bottom)
             return
         }
         let urlPath = servv+"/mob/getScores.php?deviceId=\(KeychainWrapper.stringForKey("deviceId")!)&noScores=1"
@@ -160,6 +162,10 @@ class RootViewController: UIViewController, UITableViewDataSource, UITableViewDe
             }
             cell.desc.text = polls[indexPath.row]["msg"].stringValue
             cell.price.text = "+"+polls[indexPath.row]["price"].stringValue
+            cell.price.layer.cornerRadius=15
+            cell.price.layer.masksToBounds=true
+            cell.price.clipsToBounds=true
+            cell.lockLabel.hidden = polls[indexPath.row]["done"].stringValue == "1" ? false : true
             cell.ico.hnk_setImageFromURL(NSURL(string: NSUserDefaults.standardUserDefaults().stringForKey("server")!+"/"+polls[indexPath.row]["pic"].stringValue)!)
             return cell
         default:
@@ -185,7 +191,11 @@ class RootViewController: UIViewController, UITableViewDataSource, UITableViewDe
             var s=""
             s.append(ch)
             cell.price.text = s
-            
+            cell.price.layer.cornerRadius=15
+            cell.price.layer.masksToBounds=true
+            cell.price.clipsToBounds=true
+
+            //cell.lockLabel.hidden = true
             cell.date.text = "Новости от "+polls[indexPath.row]["datetime"].stringValue
             cell.ico.hnk_setImageFromURL(NSURL(string: NSUserDefaults.standardUserDefaults().stringForKey("server")!+"/"+polls[indexPath.row]["pic"].stringValue)!)
             return cell
@@ -222,6 +232,18 @@ class RootViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
     }// */
     
+    override func shouldPerformSegueWithIdentifier(identifier: String?, sender: AnyObject?) -> Bool {
+        if identifier == "pollSegue" {
+            if let selectedCell = sender as? Root1TableViewCell {
+                let indexPath = rootTable.indexPathForCell(selectedCell)!
+                if polls[indexPath.row]["done"].stringValue == "1"{
+                    self.myToast("Отказ",msg: "Опрос уже пройден")
+                    return false
+                }
+            }
+        }
+        return true
+    }
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         //print("prepareForSegue! \(segue.identifier)")
         if segue.identifier == "newsSegue" {
@@ -236,10 +258,23 @@ class RootViewController: UIViewController, UITableViewDataSource, UITableViewDe
             let pollDetailViewController = segue.destinationViewController as! PollViewController
             if let selectedCell = sender as? Root1TableViewCell {
                 let indexPath = rootTable.indexPathForCell(selectedCell)!
-                pollDetailViewController.poll=polls[indexPath.row]
+                if polls[indexPath.row]["done"].stringValue != "1"{
+                    pollDetailViewController.poll=polls[indexPath.row]
+                    pollDetailViewController.delegate=self
+                }
                 //print ("selected \(pollDetailViewController.poll)")
             }
         }
+    }
+
+    func acceptData(data: AnyObject!) {
+        if let d = data {
+            if d as! Bool {
+                //print("meed to reload polls");
+                updatePolls()
+            }
+        }
+        
     }
 
     @IBAction func drawerMenuButton(sender: UIBarButtonItem) {

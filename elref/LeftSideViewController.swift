@@ -55,11 +55,12 @@ class LeftSideViewController: UIViewController, UITableViewDataSource, UITableVi
                 UIApplication.sharedApplication().openURL(NSURL(string:UIApplicationOpenSettingsURLString)!)
             } else {
                 // Fallback on earlier versions
-                let sendMailErrorAlert = UIAlertView(title: "Ошибка"
-                    , message: "У вас старая система, настройки недоступны. Обновитесь"
+                let sendMailErrorAlert = UIAlertView(title: "Инструкция"
+                    , message: "У вас устаревшая iOS7.\n\nЧтобы открыть опции, нажмите Home, запустите системные Настройки и промотайте вниз"
                     , delegate: self
                     , cancelButtonTitle: "OK")
                 sendMailErrorAlert.show()
+                //UIApplication.sharedApplication().openURL(NSURL(string: "prefs://")!)
             }
 
         case 6:

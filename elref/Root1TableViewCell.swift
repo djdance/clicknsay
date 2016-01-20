@@ -14,9 +14,14 @@ class Root1TableViewCell: UITableViewCell {
     @IBOutlet weak var desc: UILabel!
     @IBOutlet weak var price: UILabel!
     @IBOutlet weak var date: UILabel!
+    @IBOutlet weak var lockLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        self.layer.cornerRadius = 15
+        self.layer.masksToBounds = true
+
     }
 
 }

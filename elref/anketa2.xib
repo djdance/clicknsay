@@ -37,7 +37,7 @@
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
                             <connections>
-                                <action selector="didPressCB:" destination="iN0-l3-epB" eventType="touchUpInside" id="NnT-rI-xow"/>
+                                <action selector="didPressCB:" destination="iN0-l3-epB" eventType="touchUpInside" id="4SV-Mb-wpP"/>
                             </connections>
                         </button>
                     </subviews>
@@ -67,8 +67,9 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="checkbox" destination="FbZ-tB-c1Z" id="Zij-k1-zhs"/>
                 <outlet property="mainView" destination="jiQ-ZG-5RP" id="fug-Z7-0H3"/>
-                <outlet property="titleLabel" destination="LXu-MH-NFZ" id="Edd-Ez-iO5"/>
+                <outlet property="titleLabel" destination="LXu-MH-NFZ" id="wYQ-3P-wcY"/>
             </connections>
         </view>
     </objects>

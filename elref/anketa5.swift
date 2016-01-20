@@ -8,17 +8,17 @@
 
 import UIKit
 
-class anketa2: UIView {
+class anketa5: UIView {
 
    
-    @IBOutlet weak var titleLabel: UILabel!
-    
+   
     @IBOutlet weak var mainView: UIView!
 
     var itemId=0
 
-    
-    @IBAction func didPressCB(sender: CheckboxButton) {
-        sender.selected = !sender.selected
+    @IBOutlet weak var editText: UITextField!
+    @IBAction func didEndOnExit(sender: UITextField) {
+        sender.resignFirstResponder()
     }
+
 }

@@ -17,6 +17,8 @@ class anketa1: UIView {
     
     var itemId=0
 
+    
+    @IBOutlet weak var checkbox: CheckboxButton!
 
     @IBAction func didPressCB(sender: CheckboxButton) {
         sender.selected = !sender.selected

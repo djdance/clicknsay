@@ -14,6 +14,12 @@ class ProfileImageTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        //foto.backgroundColor=UIColor.whiteColor()
+        foto.layer.cornerRadius = 15
+        foto.layer.masksToBounds = true
+        foto.clipsToBounds=true
+        foto.layer.borderColor = UIColor.lightGrayColor().CGColor// greyColor];.CGColor;
+        foto.layer.borderWidth = 0.5;
     }
 
     override func setSelected(selected: Bool, animated: Bool) {

@@ -79,6 +79,8 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
             //https://github.com/scalessec/Toast-Swift
             self.view.makeToast("Заполните профиль!\nПолучите дополнительные баллы!", duration: 2.0, position: .Center)
         }
+        
+       
     }
 
     @IBAction func saveButton(sender: UIButton) {
@@ -290,11 +292,17 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         //print("estimatedHeightForRowAtIndexPath")
         switch profileTypes[indexPath.row] {
         case 2:
-            return 300
+            return 310
         default:
             return 90
         }
     }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if profileTypes[indexPath.row]==2 {
+            fotoTap_()
+        }
+    }// */
     
     func myToast(title: String, msg: String){
         let alert = UIAlertView(title: title
@@ -305,20 +313,22 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
             alert.show()
         })
     }
-    
-    @IBAction func fotoTap(sender: UITapGestureRecognizer) {
+    func fotoTap_(){
         //if #available(iOS 8.0, *) {
-            Popups.SharedInstance.ShowAlert(self, title: "Выберите источник", message: "Откуда взять ваш снимок?", buttons: ["Сфотографировать" , "Альбом"]) { (buttonPressed) -> Void in
-                //print("buttonPressed=\(buttonPressed)")
-                if buttonPressed == "Сфотографировать" {
-                    self.fotoTapProc(0)
-                } else if buttonPressed == "Альбом" {
-                    self.fotoTapProc(1)
-                }
+        Popups.SharedInstance.ShowAlert(self, title: "Выберите источник", message: "Откуда взять ваш снимок?", buttons: ["Сфотографировать" , "Альбом"]) { (buttonPressed) -> Void in
+            //print("buttonPressed=\(buttonPressed)")
+            if buttonPressed == "Сфотографировать" {
+                self.fotoTapProc(0)
+            } else if buttonPressed == "Альбом" {
+                self.fotoTapProc(1)
             }
+        }
         //} else {
         //    fotoTapProc(0)
         //}
+    }
+    @IBAction func fotoTap(sender: UITapGestureRecognizer) {
+        fotoTap_()
     }
     func fotoTapProc(mode: Int){
         imagePickerController.allowsEditing = true

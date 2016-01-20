@@ -8,11 +8,23 @@
 
 import UIKit
 
+protocol PollViewControllerDelegate {
+    func acceptData(data: AnyObject!)
+}
+
 class PollViewController: UIViewController {
+    // create a variable that will recieve / send messages
+    // between the view controllers.
+    var delegate : PollViewControllerDelegate?
+    // another data outlet
+    var data : AnyObject?
+    
     var poll:JSON=nil
     var json:JSON=nil
+    var answers:JSON=nil
     var currentPage=1
     var maxpage=0
+    var pollSuccess=false
     
     @IBOutlet weak var backButton: UIBarButtonItem!
     @IBOutlet weak var шапка: UINavigationItem!
@@ -38,7 +50,7 @@ class PollViewController: UIViewController {
     
     func updatePoll(){
         if poll == nil {
-            self.view.makeToast("Опрос потерян", duration: 2.0, position: .Center)
+            self.view.makeToast("Опрос потерян", duration: 2.0, position: .Bottom)
             return
         }
         let urlPath = NSUserDefaults.standardUserDefaults().stringForKey("server")!+"/mob/getPollItems.php?deviceId=\(KeychainWrapper.stringForKey("deviceId")!)&pollId=\(poll["id"].stringValue)"
@@ -91,6 +103,20 @@ class PollViewController: UIViewController {
                 self.view.makeToast("Ошибка!\nДанные опроса не загружены", duration: 2.0, position: .Center)
                 return
             }
+            /*
+            var s=""
+            for (_,item):(String, JSON) in json {
+                if item["type"]>0 && item["type"]<100 {
+                    if s != ""{
+                        s+=","
+                    }
+                    s+=item["id"].stringValue+"\":\"\""
+                }
+            }
+            s="{"+s+"}"
+            //print("s=\(s)")
+            answers=JSON.parse(s) // */
+            answers=JSON([:])
         }
         anketaView.removeAllSubviews()
         anketaView.clipsToBounds=true
@@ -98,7 +124,7 @@ class PollViewController: UIViewController {
         //for _ in 0...10 {
             for (_,item):(String, JSON) in json {
                 if item["page"].intValue==currentPage {
-                    //print ("\(item["type"].stringValue)")
+                    //print ("page=\(currentPage), \(item["type"].stringValue)")
                     switch item["type"].intValue {
                     case 0:
                         let anketa = UINib(nibName: "anketa0", bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! anketa0
@@ -111,10 +137,16 @@ class PollViewController: UIViewController {
                             y+=20
                         }// */
                         anketa.titleLabel.text=item["title"].stringValue;
-                        anketa.width=scrollView.width-40
-                        anketa.y=y
-                        anketa.x=20
-                        anketa.titleLabel.sizeToFit()
+                        if currentPage==maxpage {
+                            anketa.titleLabel.sizeToFit()
+                            anketa.y=self.view.height*0.4-50
+                            anketa.x=(scrollView.width-anketa.titleLabel.width)*0.5
+                        } else {
+                            anketa.width=scrollView.width-40
+                            anketa.y=y
+                            anketa.x=20
+                            anketa.titleLabel.sizeToFit()
+                        }
                         anketa.updateConstraints()
                         anketa.height=anketa.titleLabel.frame.height
                         //print("h=\(anketa.titleLabel.frame.height) for \(item["title"].stringValue)")
@@ -182,6 +214,27 @@ class PollViewController: UIViewController {
                         anketa.sizeToFit()
                         anketa.updateConstraints()
                         y+=anketa.height//anketa.titleLabel.frame.height//+50
+                    case 100:
+                        let anketa = UINib(nibName: "anketa100", bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! anketa100
+                        anketa.itemId=item["id"].intValue;
+                        anketaView.addSubview(anketa)
+                        if #available(iOS 8.0, *) {
+                            //anketa.titleLabel.adjustsFontSizeToFitWidth=false
+                        }else{
+                            //anketa.titleLabel.adjustsFontSizeToFitWidth=true
+                            y+=20
+                        }// */
+                        //print("item[\"title\"].string=\(item["title"].string)")
+                        anketa.b.titleLabel!.text=item["title"].stringValue=="" ? "Завершить голосование" : item["title"].stringValue;
+                        anketa.controller=self
+                        //anketa.editText.height=70
+                        //anketa.layoutIfNeeded()
+                        anketa.width=scrollView.width//*0.5
+                        anketa.y=self.view.height*0.4
+                        anketa.x=0//(scrollView.width-anketa.width)*0.5
+                        anketa.sizeToFit()
+                        anketa.updateConstraints()
+                        y+=anketa.height//anketa.titleLabel.frame.height//+50
                     default:
                         let anketa = UINib(nibName: "anketa0", bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! anketa0
                         anketa.itemId=item["id"].intValue;
@@ -221,9 +274,28 @@ class PollViewController: UIViewController {
     
     func checkForNext() -> Bool {
         for subview in anketaView.subviews  {
+            var item=JSON([:])
+            item["pollId"].string=poll["id"].stringValue
             //checkbox
             if let anketa1 = subview as? anketa1 {
-                print("checkbox itemId=\(anketa1.itemId)")
+                item["itemId"].int=anketa1.itemId
+                item["result"].string=anketa1.checkbox.selected ? "1" : "0"
+                answers["\(anketa1.itemId)"]=item
+                //print("checkbox itemId=\(anketa1.itemId)")
+            }
+            //radios
+            if let anketa2 = subview as? anketa2 {
+                item["itemId"].int=anketa2.itemId
+                item["result"].string=anketa2.checkbox.selected ? "1" : "0"
+                answers["\(anketa2.itemId)"]=item
+                //print("checkbox itemId=\(anketa2.itemId)")
+            }
+            //edittext
+            if let anketa5 = subview as? anketa5 {
+                item["itemId"].int=anketa5.itemId
+                item["result"].string=anketa5.editText.text
+                answers["\(anketa5.itemId)"]=item
+                //print("checkbox itemId=\(anketa5.itemId)")
             }
         }
         return true
@@ -243,6 +315,55 @@ class PollViewController: UIViewController {
             }
         }
     }
+    
+    func doneButton(){
+        self.view.makeToast("Отправляем результаты...", duration: 10.0, position: .Bottom)
+        ///print("answers: \(answers)")
+        let urlPath = NSUserDefaults.standardUserDefaults().stringForKey("server")!+"/mob/postResults.php?deviceId=\(KeychainWrapper.stringForKey("deviceId")!)"
+        let request = NSMutableURLRequest(URL: NSURL(string: urlPath)!)
+        request.HTTPMethod="POST"
+        do {
+            try request.HTTPBody = answers.rawData()
+            //try request.HTTPBody =  NSJSONSerialization.dataWithJSONObject(q.dictionaryObject!)
+        } catch {
+            myToast("Ошибка",msg: "Ошибка упаковки ответов\nПопробуйте поменять строки")
+            return
+        }
+        request.addValue("application/json",forHTTPHeaderField: "Content-Type")
+        request.addValue("application/json",forHTTPHeaderField: "Accept")
+        
+        stepbackButton.enabled=false
+
+        UIApplication.sharedApplication().networkActivityIndicatorVisible=true
+        NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
+            //print("updateUser.php completed, data=\(NSString(data: data!, encoding: NSUTF8StringEncoding)!)")
+            UIApplication.sharedApplication().networkActivityIndicatorVisible=false
+            if error != nil  {
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.stepbackButton.enabled=true
+                })
+                self.myToast("Ошибка",msg: "Нет связи с сервером\nПопробуйте снова\n\n\(error != nil ? error!.localizedDescription : "no data")")
+            } else {
+                dispatch_async(dispatch_get_main_queue(), {
+                    Popups.SharedInstance.ShowAlert(self, title: "Опрос завершён", message: "Спасибо за участие в опросе. Вам начислено \(self.poll["price"].stringValue) баллов", buttons: ["Ok"]) { (buttonPressed) -> Void in
+                        //print("buttonPressed=\(buttonPressed)")
+                        if buttonPressed == "Ok" {
+                            self.pollSuccess=true
+                            self.dismissViewControllerAnimated(true, completion: nil)
+                        }
+                    }
+                })
+            }
+        }).resume()
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        if self.isBeingDismissed() {
+            self.delegate?.acceptData(pollSuccess)
+        }
+    }
+    
 
     @IBAction func backButton(sender: AnyObject) {
         dismissViewControllerAnimated(true, completion: nil)

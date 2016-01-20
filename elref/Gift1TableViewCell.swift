@@ -16,6 +16,13 @@ class Gift1TableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        self.layer.cornerRadius = 15
+        self.layer.masksToBounds = true
+
+        priceLabel.layer.cornerRadius = 10
+        priceLabel.layer.masksToBounds = true
+
     }
 
 }
