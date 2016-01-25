@@ -12,6 +12,7 @@ class ShopViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @IBOutlet weak var backButton: UIBarButtonItem!
     @IBOutlet weak var shopTable: UITableView!
     var json:JSON=nil
+    var money=0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,6 +20,10 @@ class ShopViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let attributes = [NSFontAttributeName: UIFont.fontAwesomeOfSize(20)] as Dictionary!
         backButton.setTitleTextAttributes(attributes, forState: .Normal)
         navigationItem.leftBarButtonItem = backButton
+        if let m=NSUserDefaults.standardUserDefaults().stringForKey("money"){
+            money=Int(m)!
+        }
+        //money=350 //debug
 
         shopTable.delegate=self
         shopTable.dataSource=self
@@ -81,7 +86,16 @@ class ShopViewController: UIViewController, UITableViewDataSource, UITableViewDe
         //var date=json[indexPath.row+1]["updated"].stringValue
         cell.title.text = json[indexPath.row]["title"].stringValue+" \n \n \n \n \n \n "
         cell.desc.text = json[indexPath.row]["description"].stringValue
-        cell.price.text = json[indexPath.row]["price"].stringValue
+        
+        let priceS : String = json[indexPath.row]["price"].stringValue
+        cell.price.text = priceS
+        if let price=Int(priceS) {
+            if money>=price {
+                cell.price.backgroundColor=UIColor(red: 242.0/255.0, green: 206.0/255.0, blue: 0, alpha: 1)  //золотой
+            } else {
+                cell.price.backgroundColor=UIColor.lightGrayColor()
+            }
+        }
         cell.ico.hnk_setImageFromURL(NSURL(string: NSUserDefaults.standardUserDefaults().stringForKey("server")!+"/"+json[indexPath.row]["pic"].stringValue)!)
         return cell
     }

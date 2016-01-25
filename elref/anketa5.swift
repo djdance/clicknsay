@@ -15,6 +15,7 @@ class anketa5: UIView {
     @IBOutlet weak var mainView: UIView!
 
     var itemId=0
+    var type=0
 
     @IBOutlet weak var editText: UITextField!
     @IBAction func didEndOnExit(sender: UITextField) {

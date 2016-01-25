@@ -21,7 +21,6 @@ class Root1TableViewCell: UITableViewCell {
         
         self.layer.cornerRadius = 15
         self.layer.masksToBounds = true
-
     }
 
 }

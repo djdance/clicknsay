@@ -16,6 +16,15 @@ class anketa100: UIView {
     @IBOutlet weak var mainView: UIView!
 
     var itemId=0
+    var type=0
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        //print("anketa100 awakeFromNib")
+        b.layer.cornerRadius = 15
+        b.layer.masksToBounds = true
+        
+    }
 
     @IBAction func b(sender: AnyObject) {
         if controller != nil {

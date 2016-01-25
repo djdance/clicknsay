@@ -57,28 +57,31 @@ class CityViewController: UIViewController,/* UIPickerViewDelegate, UIPickerView
                     //print("json: \(self.json)")
                     if self.json["error"]=="no user"{
                         self.loadCities()
-                    } else if self.json["error"] != nil {
+                    } else if self.json["error"] != nil && self.json["error"] != "" {
+                        self.myToast("Сервер передал неверные данные 2")
+                    } else {
                         //print("city=\(self.json["city"].string)")
                         //print("username=\(self.json["username"].string)")
                         var username=""
                         if let un=self.json["username"].string {
                             username=un
                         }
-                        Popups.SharedInstance.ShowAlert(self, title: "С возвращением, \(username)!", message: "Мы обнаружили, что вы переустановили программу. Ваш город - \(self.json["cityName"].string!).", buttons: ["Да" , "Нет"]) { (buttonPressed) -> Void in
-                            //print("buttonPressed=\(buttonPressed)")
-                            if buttonPressed == "Да" {
-                                self.cityId=self.json["city"].intValue
-                                NSUserDefaults.standardUserDefaults().setInteger(self.cityId, forKey: "cityId")
-                                NSUserDefaults.standardUserDefaults().setObject(self.json["cityName"].string!, forKey: "cityName")
-                                NSUserDefaults.standardUserDefaults().setObject(username, forKey: "username")
-                                //print("city \(self.cityId) записан")
-                                self.finish()
-                            } else if buttonPressed == "Нет" {
-                                self.loadCities()
+                        //print("С возвращением!")
+                        dispatch_async(dispatch_get_main_queue(), {
+                            Popups.SharedInstance.ShowAlert(self, title: "С возвращением, \(username)!", message: "Мы обнаружили, что вы переустановили программу. Ваш город - \(self.json["cityName"].string!).", buttons: ["Да" , "Нет"]) { (buttonPressed) -> Void in
+                                //print("buttonPressed=\(buttonPressed)")
+                                if buttonPressed == "Да" {
+                                    self.cityId=self.json["city"].intValue
+                                    NSUserDefaults.standardUserDefaults().setInteger(self.cityId, forKey: "cityId")
+                                    NSUserDefaults.standardUserDefaults().setObject(self.json["cityName"].string!, forKey: "cityName")
+                                    NSUserDefaults.standardUserDefaults().setObject(username, forKey: "username")
+                                    //print("city \(self.cityId) записан")
+                                    self.finish()
+                                } else if buttonPressed == "Нет" {
+                                    self.loadCities()
+                                }
                             }
-                        }
-                    } else {
-                        self.myToast("Сервер передал неверные данные2\nПопробуйте снова")
+                        })
                     }
                 } else {
                     self.myToast("Сервер передал неверные данные3\nПопробуйте снова")

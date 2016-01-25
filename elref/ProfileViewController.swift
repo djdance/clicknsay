@@ -44,7 +44,6 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         drawerButton.setTitleTextAttributes(attributes, forState: .Normal)
         cityButton.setTitleTextAttributes(attributes, forState: .Normal)
         //drawerButton.title=String.fontAwesomeIconWithName(.Bars)
-
         let cache=Shared.imageCache
         cache.fetch(URL: NSURL(string: NSUserDefaults.standardUserDefaults().stringForKey("server")!+"/upload/user\(userId)_t")!).onSuccess { image in
             self.avatarPic=image

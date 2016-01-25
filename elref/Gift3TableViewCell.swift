@@ -11,6 +11,8 @@ import UIKit
 class Gift3TableViewCell: UITableViewCell {
     @IBOutlet weak var pin: UILabel!
     @IBOutlet weak var titleButton: UIButton!
+    @IBOutlet weak var submitButton: UIButton!
+    @IBOutlet weak var generateButton: UIButton!
     @IBOutlet weak var fio: UITextField!
     @IBOutlet weak var email: UITextField!
     @IBOutlet weak var pinEdit: UITextField!
@@ -29,6 +31,14 @@ class Gift3TableViewCell: UITableViewCell {
         if email.text=="" {
             email.text=NSUserDefaults.standardUserDefaults().stringForKey("email")
         }
+        
+        titleButton.layer.cornerRadius = 15
+        titleButton.layer.masksToBounds = true
+        submitButton.layer.cornerRadius = 15
+        submitButton.layer.masksToBounds = true
+        generateButton.layer.cornerRadius = 10
+        generateButton.layer.masksToBounds = true
+
 
     }
 

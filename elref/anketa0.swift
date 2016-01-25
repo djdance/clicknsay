@@ -15,5 +15,6 @@ class anketa0: UIView {
     @IBOutlet weak var mainView: UIView!
     
     var itemId=0
+    var type=0
     
 }

@@ -11,6 +11,7 @@ import MessageUI
 
 class FeedbackViewController: UIViewController, MFMailComposeViewControllerDelegate {
 
+    @IBOutlet weak var mailButton: UIButton!
     @IBOutlet weak var backButton: UIBarButtonItem!
     
     override func viewDidLoad() {
@@ -20,6 +21,9 @@ class FeedbackViewController: UIViewController, MFMailComposeViewControllerDeleg
         // Do any additional setup after loading the view.
         let attributes = [NSFontAttributeName: UIFont.fontAwesomeOfSize(20)] as Dictionary!
         backButton.setTitleTextAttributes(attributes, forState: .Normal)
+        
+        mailButton.layer.cornerRadius = 15
+        mailButton.layer.masksToBounds = true
        
     }
     

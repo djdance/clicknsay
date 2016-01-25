@@ -44,7 +44,11 @@ class PollViewController: UIViewController {
         stepforwButton.hidden=true//enabled=false
         pg.setProgress(0, animated: true)
         scrollView.contentSize=CGSizeMake(self.view.frame.size.width, self.view.frame.size.height*2)
-        
+        stepbackButton.layer.cornerRadius = 15
+        stepbackButton.layer.masksToBounds = true
+        stepforwButton.layer.cornerRadius = 15
+        stepforwButton.layer.masksToBounds = true
+
         updatePoll()
     }
     
@@ -119,7 +123,9 @@ class PollViewController: UIViewController {
             answers=JSON([:])
         }
         anketaView.removeAllSubviews()
+        scrollView.setContentOffset(CGPoint(x: 0,y:0),animated:true)
         anketaView.clipsToBounds=true
+        var wasSomeText=false
         var y:CGFloat=0.0
         //for _ in 0...10 {
             for (_,item):(String, JSON) in json {
@@ -129,6 +135,7 @@ class PollViewController: UIViewController {
                     case 0:
                         let anketa = UINib(nibName: "anketa0", bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! anketa0
                         anketa.itemId=item["id"].intValue;
+                        anketa.type=item["type"].intValue;
                         anketaView.addSubview(anketa)
                         if #available(iOS 8.0, *) {
                             anketa.titleLabel.adjustsFontSizeToFitWidth=false
@@ -136,10 +143,13 @@ class PollViewController: UIViewController {
                             anketa.titleLabel.adjustsFontSizeToFitWidth=true
                             y+=20
                         }// */
-                        anketa.titleLabel.text=item["title"].stringValue;
+                        if !wasSomeText {
+                            y+=50
+                        }
+                        anketa.titleLabel.text=item["title"].stringValue
                         if currentPage==maxpage {
                             anketa.titleLabel.sizeToFit()
-                            anketa.y=self.view.height*0.4-50
+                            anketa.y=y//self.view.height*0.4-50
                             anketa.x=(scrollView.width-anketa.titleLabel.width)*0.5
                         } else {
                             anketa.width=scrollView.width-40
@@ -151,9 +161,11 @@ class PollViewController: UIViewController {
                         anketa.height=anketa.titleLabel.frame.height
                         //print("h=\(anketa.titleLabel.frame.height) for \(item["title"].stringValue)")
                         y+=anketa.titleLabel.frame.height//+50
+                        wasSomeText=true
                     case 1:
                         let anketa = UINib(nibName: "anketa1", bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! anketa1
                         anketa.itemId=item["id"].intValue;
+                        anketa.type=item["type"].intValue;
                         anketaView.addSubview(anketa)
                         if #available(iOS 8.0, *) {
                             //anketa.titleLabel.adjustsFontSizeToFitWidth=false
@@ -177,6 +189,8 @@ class PollViewController: UIViewController {
                         let anketa = UINib(nibName: "anketa2", bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! anketa2
                         anketa.itemId=item["id"].intValue;
                         anketaView.addSubview(anketa)
+                        anketa.type=item["type"].intValue;
+                        anketa.controller=self
                         if #available(iOS 8.0, *) {
                             //anketa.titleLabel.adjustsFontSizeToFitWidth=false
                         }else{
@@ -198,6 +212,7 @@ class PollViewController: UIViewController {
                     case 5,6:
                         let anketa = UINib(nibName: "anketa5", bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! anketa5
                         anketa.itemId=item["id"].intValue;
+                        anketa.type=item["type"].intValue;
                         anketaView.addSubview(anketa)
                         if #available(iOS 8.0, *) {
                             //anketa.titleLabel.adjustsFontSizeToFitWidth=false
@@ -214,30 +229,11 @@ class PollViewController: UIViewController {
                         anketa.sizeToFit()
                         anketa.updateConstraints()
                         y+=anketa.height//anketa.titleLabel.frame.height//+50
-                    case 100:
-                        let anketa = UINib(nibName: "anketa100", bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! anketa100
-                        anketa.itemId=item["id"].intValue;
-                        anketaView.addSubview(anketa)
-                        if #available(iOS 8.0, *) {
-                            //anketa.titleLabel.adjustsFontSizeToFitWidth=false
-                        }else{
-                            //anketa.titleLabel.adjustsFontSizeToFitWidth=true
-                            y+=20
-                        }// */
-                        //print("item[\"title\"].string=\(item["title"].string)")
-                        anketa.b.titleLabel!.text=item["title"].stringValue=="" ? "Завершить голосование" : item["title"].stringValue;
-                        anketa.controller=self
-                        //anketa.editText.height=70
-                        //anketa.layoutIfNeeded()
-                        anketa.width=scrollView.width//*0.5
-                        anketa.y=self.view.height*0.4
-                        anketa.x=0//(scrollView.width-anketa.width)*0.5
-                        anketa.sizeToFit()
-                        anketa.updateConstraints()
-                        y+=anketa.height//anketa.titleLabel.frame.height//+50
-                    default:
+                    case 11:
+                        //необязательное
                         let anketa = UINib(nibName: "anketa0", bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! anketa0
                         anketa.itemId=item["id"].intValue;
+                        anketa.type=item["type"].intValue;
                         anketaView.addSubview(anketa)
                         if #available(iOS 8.0, *) {
                             anketa.titleLabel.adjustsFontSizeToFitWidth=false
@@ -245,7 +241,65 @@ class PollViewController: UIViewController {
                             anketa.titleLabel.adjustsFontSizeToFitWidth=true
                             y+=20
                         }// */
-                        anketa.titleLabel.text="[Этот тип вопроса не поддерживается данной версией программы. Пожалуйста, не участвуйте в опросе]\n"+item["title"].stringValue;
+                        anketa.titleLabel.text=item["title"].stringValue;
+                        if currentPage==maxpage {
+                            anketa.titleLabel.sizeToFit()
+                            anketa.y=self.view.height*0.4-50
+                            anketa.x=(scrollView.width-anketa.titleLabel.width)*0.5
+                        } else {
+                            anketa.width=scrollView.width-40
+                            anketa.y=y
+                            anketa.x=20
+                            anketa.titleLabel.sizeToFit()
+                        }
+                        anketa.updateConstraints()
+                        anketa.height=anketa.titleLabel.frame.height
+                        //print("h=\(anketa.titleLabel.frame.height) for \(item["title"].stringValue)")
+                        y+=anketa.titleLabel.frame.height//+50
+                    case 100:
+                        let anketa = UINib(nibName: "anketa100", bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! anketa100
+                        anketa.itemId=item["id"].intValue;
+                        anketa.type=item["type"].intValue;
+                        anketaView.addSubview(anketa)
+                        //if #available(iOS 8.0, *) {
+                            //anketa.titleLabel.adjustsFontSizeToFitWidth=false
+                        //}else{
+                            //anketa.titleLabel.adjustsFontSizeToFitWidth=true
+                            y+=20
+                        //}// */
+                        //print("item[\"title\"].string=\(item["title"].string)")
+                        anketa.b.titleLabel!.text=item["title"].stringValue=="" ? "Завершить голосование" : item["title"].stringValue;
+                        anketa.controller=self
+                        //anketa.editText.height=70
+                        //anketa.layoutIfNeeded()
+                        //anketa.sizeToFit()
+                        anketa.updateConstraints()
+                        if scrollView.width>anketa.width {
+                            anketa.x=(scrollView.width-anketa.width)*0.5
+                        }else{
+                            anketa.width=scrollView.width
+                            anketa.x=0
+                        }
+                        if wasSomeText {
+                            anketa.y=y
+                        }else{
+                            anketa.y=self.view.height*0.2
+                        }
+                        //print("button100 y=\(y)")
+                        //anketa.x=0//(scrollView.width-anketa.width)*0.5
+                        y+=anketa.height//anketa.titleLabel.frame.height//+50
+                    default:
+                        let anketa = UINib(nibName: "anketa0", bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! anketa0
+                        anketa.itemId=item["id"].intValue;
+                        anketa.type=item["type"].intValue;
+                        anketaView.addSubview(anketa)
+                        if #available(iOS 8.0, *) {
+                            anketa.titleLabel.adjustsFontSizeToFitWidth=false
+                        }else{
+                            anketa.titleLabel.adjustsFontSizeToFitWidth=true
+                            y+=20
+                        }// */
+                        anketa.titleLabel.text=""//item["title"].stringValue;
                         anketa.width=scrollView.width-60
                         anketa.y=y
                         anketa.x=20
@@ -273,14 +327,28 @@ class PollViewController: UIViewController {
     }
     
     func checkForNext() -> Bool {
+        var needChecked=false
+        var wasChecked=false
         for subview in anketaView.subviews  {
             var item=JSON([:])
             item["pollId"].string=poll["id"].stringValue
+            //textview or type11
+            if let anketa0 = subview as? anketa0 {
+                if anketa0.type==11 {
+                    //print("необязательно!")
+                    wasChecked=true
+                }
+                //print("checkbox itemId=\(anketa1.itemId)")
+            }
             //checkbox
             if let anketa1 = subview as? anketa1 {
                 item["itemId"].int=anketa1.itemId
                 item["result"].string=anketa1.checkbox.selected ? "1" : "0"
                 answers["\(anketa1.itemId)"]=item
+                needChecked=true
+                if anketa1.checkbox.selected {
+                    wasChecked=true
+                }
                 //print("checkbox itemId=\(anketa1.itemId)")
             }
             //radios
@@ -288,6 +356,10 @@ class PollViewController: UIViewController {
                 item["itemId"].int=anketa2.itemId
                 item["result"].string=anketa2.checkbox.selected ? "1" : "0"
                 answers["\(anketa2.itemId)"]=item
+                needChecked=true
+                if anketa2.checkbox.selected {
+                    wasChecked=true
+                }
                 //print("checkbox itemId=\(anketa2.itemId)")
             }
             //edittext
@@ -295,10 +367,28 @@ class PollViewController: UIViewController {
                 item["itemId"].int=anketa5.itemId
                 item["result"].string=anketa5.editText.text
                 answers["\(anketa5.itemId)"]=item
+                needChecked=true
+                if let s=anketa5.editText.text where s != "" {
+                    wasChecked=true
+                }
                 //print("checkbox itemId=\(anketa5.itemId)")
             }
         }
+        if needChecked && !wasChecked {
+            myToast("Ошибка", msg: "Пожалуйста, ответьте на вопрос")
+            return false
+        }
         return true
+    }
+    
+    func radioChecked(anketa: anketa2){
+        for subview in anketaView.subviews  {
+            //radios
+            if let anketa2 = subview as? anketa2 where !(anketa2 === anketa) {
+                anketa2.checkbox.selected=false
+            }
+        }
+        
     }
     
     @IBAction func stepbackButton(sender: AnyObject) {

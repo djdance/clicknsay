@@ -14,6 +14,9 @@ class Gift2TableViewCell: UITableViewCell {
     @IBOutlet weak var whereButton: UIButton!
     override func awakeFromNib() {
         super.awakeFromNib()
+        whereButton.layer.cornerRadius = 15
+        whereButton.layer.masksToBounds = true
+
     }
 
     @IBAction func whereButton(sender: UIButton) {
