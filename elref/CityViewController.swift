@@ -49,7 +49,15 @@ class CityViewController: UIViewController,/* UIPickerViewDelegate, UIPickerView
             //print("checkExistedUser completed")
             UIApplication.sharedApplication().networkActivityIndicatorVisible=false
             if error != nil || data == nil {
-                self.myToast("Нет связи с сервером\nПопробуйте снова\n\n\(error != nil ? error!.localizedDescription : "no data")")
+                //self.myToast("Нет связи с сервером\nПопробуйте снова\n\n\(error != nil ? error!.localizedDescription : "no data")")
+                dispatch_async(dispatch_get_main_queue(), {
+                    Popups.SharedInstance.ShowAlert(self, title: "Ошибка", message: "Нет связи с сервером\nПопробуйте снова\n\n\(error != nil ? error!.localizedDescription : "no data")", buttons: ["Повтор","Отмена"]) { (buttonPressed) -> Void in
+                        if buttonPressed == "Повтор" {
+                            self.checkExistedUser()
+                        }
+                    }
+                })
+
             } else {
                 self.json = JSON(data: data!)
                 //print("swity ok") // https://github.com/SwiftyJSON/SwiftyJSON
@@ -99,7 +107,15 @@ class CityViewController: UIViewController,/* UIPickerViewDelegate, UIPickerView
             //print("loadCities completed")
             UIApplication.sharedApplication().networkActivityIndicatorVisible=false
             if error != nil  || data == nil {
-                self.myToast("Нет связи с сервером\nПопробуйте снова\n\n\(error != nil ? error!.localizedDescription : "no data")")
+                //self.myToast("Нет связи с сервером\nПопробуйте снова\n\n\(error != nil ? error!.localizedDescription : "no data")")
+                dispatch_async(dispatch_get_main_queue(), {
+                    Popups.SharedInstance.ShowAlert(self, title: "Ошибка", message: "Нет связи с сервером\nПопробуйте снова\n\n\(error != nil ? error!.localizedDescription : "no data")", buttons: ["Повтор","Отмена"]) { (buttonPressed) -> Void in
+                        if buttonPressed == "Повтор" {
+                            self.loadCities()
+                        }
+                    }
+                })
+
             } else {
                 self.json = JSON(data: data!)
                 //print("swity ok") // https://github.com/SwiftyJSON/SwiftyJSON

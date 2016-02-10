@@ -14,7 +14,7 @@
                 <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jiQ-ZG-5RP">
                     <rect key="frame" x="0.0" y="0.0" width="300" height="100"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="gtJ-4x-F0U">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gtJ-4x-F0U">
                             <rect key="frame" x="0.0" y="0.0" width="300" height="100"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
@@ -28,11 +28,13 @@
                         <constraint firstAttribute="bottom" secondItem="gtJ-4x-F0U" secondAttribute="bottom" id="bPi-rU-V93"/>
                         <constraint firstAttribute="trailing" secondItem="gtJ-4x-F0U" secondAttribute="trailing" id="fgO-Hq-30H"/>
                         <constraint firstAttribute="bottom" secondItem="gtJ-4x-F0U" secondAttribute="bottom" constant="8" id="iEn-yQ-cRa"/>
+                        <constraint firstItem="gtJ-4x-F0U" firstAttribute="top" secondItem="jiQ-ZG-5RP" secondAttribute="top" id="wfL-aR-70c"/>
                         <constraint firstItem="gtJ-4x-F0U" firstAttribute="top" secondItem="jiQ-ZG-5RP" secondAttribute="top" id="zM7-tk-L43"/>
                     </constraints>
                     <variation key="default">
                         <mask key="constraints">
                             <exclude reference="iEn-yQ-cRa"/>
+                            <exclude reference="zM7-tk-L43"/>
                         </mask>
                     </variation>
                 </view>

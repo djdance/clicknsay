@@ -71,6 +71,8 @@
 		FB2E50171C42E825000CA8A3 /* KeychainWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB2E50161C42E825000CA8A3 /* KeychainWrapper.swift */; };
 		FB2E501D1C42F216000CA8A3 /* crc32.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB2E501C1C42F216000CA8A3 /* crc32.swift */; };
 		FB99A6FB1C56C9560075AB38 /* ProfileButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB99A6FA1C56C9560075AB38 /* ProfileButtonTableViewCell.swift */; };
+		FB99A6FD1C5D27BE0075AB38 /* anketa0pic.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB99A6FC1C5D27BE0075AB38 /* anketa0pic.xib */; };
+		FB99A6FF1C5D27CD0075AB38 /* anketa0pic.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB99A6FE1C5D27CD0075AB38 /* anketa0pic.swift */; };
 		FBFF76921C3AE287002BEBC0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBFF76911C3AE287002BEBC0 /* AppDelegate.swift */; };
 		FBFF76971C3AE287002BEBC0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FBFF76951C3AE287002BEBC0 /* Main.storyboard */; };
 		FBFF769A1C3AE287002BEBC0 /* elref.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FBFF76981C3AE287002BEBC0 /* elref.xcdatamodeld */; };
@@ -172,6 +174,8 @@
 		FB2E50161C42E825000CA8A3 /* KeychainWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainWrapper.swift; sourceTree = "<group>"; };
 		FB2E501C1C42F216000CA8A3 /* crc32.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = crc32.swift; sourceTree = "<group>"; };
 		FB99A6FA1C56C9560075AB38 /* ProfileButtonTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileButtonTableViewCell.swift; sourceTree = "<group>"; };
+		FB99A6FC1C5D27BE0075AB38 /* anketa0pic.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = anketa0pic.xib; sourceTree = "<group>"; };
+		FB99A6FE1C5D27CD0075AB38 /* anketa0pic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = anketa0pic.swift; sourceTree = "<group>"; };
 		FBFF768E1C3AE287002BEBC0 /* elref.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = elref.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FBFF76911C3AE287002BEBC0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FBFF76931C3AE287002BEBC0 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
@@ -218,6 +222,8 @@
 		FB004F5F1C4BE33D00D193B5 /* anketas */ = {
 			isa = PBXGroup;
 			children = (
+				FB99A6FC1C5D27BE0075AB38 /* anketa0pic.xib */,
+				FB99A6FE1C5D27CD0075AB38 /* anketa0pic.swift */,
 				FB004F6C1C4C133900D193B5 /* anketa0.xib */,
 				FB004F601C4BE39500D193B5 /* anketa0.swift */,
 				FB004F681C4C12EF00D193B5 /* anketa1.xib */,
@@ -470,6 +476,7 @@
 				FB004F6D1C4C133900D193B5 /* anketa0.xib in Resources */,
 				FB2E50101C427B86000CA8A3 /* SWComboxTitle.xib in Resources */,
 				FBFF76971C3AE287002BEBC0 /* Main.storyboard in Resources */,
+				FB99A6FD1C5D27BE0075AB38 /* anketa0pic.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -512,6 +519,7 @@
 				FB2E4FF71C3EA9E1000CA8A3 /* Toast.swift in Sources */,
 				FB2E500C1C427B86000CA8A3 /* SWComboxCountry.swift in Sources */,
 				FB2E50111C427B86000CA8A3 /* SWComboxView.swift in Sources */,
+				FB99A6FF1C5D27CD0075AB38 /* anketa0pic.swift in Sources */,
 				FB04C80C1C46B39E000F2C27 /* UIImageView+Haneke.swift in Sources */,
 				FB04C80A1C46B39E000F2C27 /* UIButton+Haneke.swift in Sources */,
 				FB2E500F1C427B86000CA8A3 /* SWComboxTitle.swift in Sources */,

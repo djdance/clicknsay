@@ -68,7 +68,15 @@ class PollViewController: UIViewController {
             })
             UIApplication.sharedApplication().networkActivityIndicatorVisible=false
             if error != nil || data == nil {
-                self.myToast("Ошибка",msg: "Нет связи с сервером\nПопробуйте позднее\n\n\(error != nil ? error!.localizedDescription : "no data")")
+                //self.myToast("Ошибка",msg: "Нет связи с сервером\nПопробуйте позднее\n\n\(error != nil ? error!.localizedDescription : "no data")")
+                dispatch_async(dispatch_get_main_queue(), {
+                    Popups.SharedInstance.ShowAlert(self, title: "Ошибка", message: "Нет связи с сервером\nПопробуйте снова\n\n\(error != nil ? error!.localizedDescription : "no data")", buttons: ["Повтор","Отмена"]) { (buttonPressed) -> Void in
+                        if buttonPressed == "Повтор" {
+                            self.updatePoll()
+                        }
+                    }
+                })
+
             } else {
                 self.json = JSON(data: data!)
                 //print("swity ok") // https://github.com/SwiftyJSON/SwiftyJSON
@@ -122,8 +130,8 @@ class PollViewController: UIViewController {
             answers=JSON.parse(s) // */
             answers=JSON([:])
         }
+        scrollView.setContentOffset(CGPoint(x: 0,y:0),animated:false)
         anketaView.removeAllSubviews()
-        scrollView.setContentOffset(CGPoint(x: 0,y:0),animated:true)
         anketaView.clipsToBounds=true
         var wasSomeText=false
         var y:CGFloat=0.0
@@ -131,84 +139,108 @@ class PollViewController: UIViewController {
             for (_,item):(String, JSON) in json {
                 if item["page"].intValue==currentPage {
                     //print ("page=\(currentPage), \(item["type"].stringValue)")
+                    //print("next item. y=\(y), type=\(item["type"].intValue)")
                     switch item["type"].intValue {
                     case 0:
+                        if !wasSomeText {
+                            y+=40
+                        }
+                        //print("pic=\(item["pic"].string)")
+                        if let pic=item["pic"].string where pic != "" {
+                            let anketa = UINib(nibName: "anketa0pic", bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! anketa0pic
+                            anketa.itemId=item["id"].intValue;
+                            anketa.type=item["type"].intValue;
+                            anketaView.addSubview(anketa)
+                            if pic.containsString("http"){
+                                anketa.pic.hnk_setImageFromURL(NSURL(string: pic)!)
+                            } else {
+                                anketa.pic.hnk_setImageFromURL(NSURL(string: NSUserDefaults.standardUserDefaults().stringForKey("server")!+"/"+pic)!)
+                            }
+                            anketa.y=y
+                            anketa.x=0
+                            anketa.width=scrollView.width//-anketa.width)*0.5
+                            anketa.updateConstraints()
+                            y+=anketa.height-20
+                        }
                         let anketa = UINib(nibName: "anketa0", bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! anketa0
                         anketa.itemId=item["id"].intValue;
                         anketa.type=item["type"].intValue;
                         anketaView.addSubview(anketa)
+                        /*
                         if #available(iOS 8.0, *) {
                             anketa.titleLabel.adjustsFontSizeToFitWidth=false
                         }else{
                             anketa.titleLabel.adjustsFontSizeToFitWidth=true
-                            y+=20
                         }// */
-                        if !wasSomeText {
-                            y+=50
-                        }
                         anketa.titleLabel.text=item["title"].stringValue
+                        //print("pre y=\(y)")
                         if currentPage==maxpage {
                             anketa.titleLabel.sizeToFit()
-                            anketa.y=y//self.view.height*0.4-50
                             anketa.x=(scrollView.width-anketa.titleLabel.width)*0.5
+                            anketa.updateConstraints()
+                            anketa.y=y//self.view.height*0.4-50
                         } else {
                             anketa.width=scrollView.width-40
-                            anketa.y=y
                             anketa.x=20
                             anketa.titleLabel.sizeToFit()
+                            anketa.updateConstraints()
+                            //print("anketa.titleLabel.frame.height=\(anketa.titleLabel.frame.height)")
+                            anketa.y=y
+                            if #available(iOS 8.0, *) {
+                                anketa.height=anketa.titleLabel.frame.height/2+20
+                                y+=anketa.height+20
+                            }else{
+                                anketa.height=anketa.titleLabel.frame.height
+                                y=anketa.y+anketa.titleLabel.frame.height/2+20
+                            }// */
                         }
-                        anketa.updateConstraints()
-                        anketa.height=anketa.titleLabel.frame.height
-                        //print("h=\(anketa.titleLabel.frame.height) for \(item["title"].stringValue)")
-                        y+=anketa.titleLabel.frame.height//+50
                         wasSomeText=true
                     case 1:
                         let anketa = UINib(nibName: "anketa1", bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! anketa1
                         anketa.itemId=item["id"].intValue;
                         anketa.type=item["type"].intValue;
                         anketaView.addSubview(anketa)
-                        if #available(iOS 8.0, *) {
-                            //anketa.titleLabel.adjustsFontSizeToFitWidth=false
-                        }else{
-                            //anketa.titleLabel.adjustsFontSizeToFitWidth=true
-                            y+=20
-                        }// */
                         anketa.titleLabel.text=item["title"].stringValue;
                         //anketa.mySwitch.enabled=true// setOn(true, animated: true)
                         anketa.width=scrollView.width-40
                         anketa.y=y
                         anketa.x=30
-                        anketa.titleLabel.sizeToFit()
-                        anketa.sizeToFit()
-                        anketa.updateConstraints()
+                        if #available(iOS 8.0, *) {
+                            //anketa.titleLabel.adjustsFontSizeToFitWidth=false
+                            anketa.titleLabel.sizeToFit()
+                            anketa.sizeToFit()
+                            anketa.updateConstraints()
+                            //anketa.height=max(70,anketa.titleLabel.frame.height)
+                        }else{
+                            anketa.titleLabel.adjustsFontSizeToFitWidth=true
+                            //    y+=30
+                        }// */
                         //print("h=\(anketa.titleLabel.frame.height)=\(anketa.titleLabel.height) anketa.height=\(anketa.height)")
-                        anketa.height=max(70,anketa.titleLabel.frame.height)
                         //print(".................................-> anketa.height=\(anketa.height)")
-                        y+=anketa.height//anketa.titleLabel.frame.height//+50
+                        y=anketa.y+anketa.frame.height///2+20//anketa.titleLabel.frame.height//+50
                     case 2:
                         let anketa = UINib(nibName: "anketa2", bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! anketa2
                         anketa.itemId=item["id"].intValue;
                         anketaView.addSubview(anketa)
                         anketa.type=item["type"].intValue;
                         anketa.controller=self
-                        if #available(iOS 8.0, *) {
-                            //anketa.titleLabel.adjustsFontSizeToFitWidth=false
-                        }else{
-                            //anketa.titleLabel.adjustsFontSizeToFitWidth=true
-                            y+=20
-                        }// */
-                        anketa.titleLabel.text=item["title"].stringValue;
-                        //anketa.mySwitch.enabled=true// setOn(true, animated: true)
                         anketa.width=scrollView.width-40
                         anketa.y=y
                         anketa.x=30
-                        anketa.titleLabel.sizeToFit()
-                        anketa.sizeToFit()
-                        anketa.updateConstraints()
-                        //print("h=\(anketa.titleLabel.frame.height)=\(anketa.titleLabel.height) anketa.height=\(anketa.height)")
-                        anketa.height=max(70,anketa.titleLabel.frame.height)
+                        if #available(iOS 8.0, *) {
+                            //anketa.titleLabel.adjustsFontSizeToFitWidth=false
+                            anketa.titleLabel.sizeToFit()
+                            anketa.sizeToFit()
+                            anketa.updateConstraints()
+                            //anketa.height=max(70,anketa.titleLabel.frame.height)
+                        }else{
+                            anketa.titleLabel.adjustsFontSizeToFitWidth=true
+                        //    y+=30
+                        }// */
+                        anketa.titleLabel.text=item["title"].stringValue;
+                        //anketa.mySwitch.enabled=true// setOn(true, animated: true)
                         //print(".................................-> anketa.height=\(anketa.height)")
-                        y+=anketa.height//anketa.titleLabel.frame.height//+50
+                        y=anketa.y+anketa.height//anketa.titleLabel.frame.height//+50
                     case 5,6:
                         let anketa = UINib(nibName: "anketa5", bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! anketa5
                         anketa.itemId=item["id"].intValue;
@@ -228,7 +260,7 @@ class PollViewController: UIViewController {
                         anketa.x=30
                         anketa.sizeToFit()
                         anketa.updateConstraints()
-                        y+=anketa.height//anketa.titleLabel.frame.height//+50
+                        y=anketa.y+anketa.height//anketa.titleLabel.frame.height//+50
                     case 11:
                         //необязательное
                         let anketa = UINib(nibName: "anketa0", bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! anketa0
@@ -255,7 +287,7 @@ class PollViewController: UIViewController {
                         anketa.updateConstraints()
                         anketa.height=anketa.titleLabel.frame.height
                         //print("h=\(anketa.titleLabel.frame.height) for \(item["title"].stringValue)")
-                        y+=anketa.titleLabel.frame.height//+50
+                        y=anketa.y+anketa.titleLabel.frame.height//+50
                     case 100:
                         let anketa = UINib(nibName: "anketa100", bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! anketa100
                         anketa.itemId=item["id"].intValue;
@@ -319,7 +351,9 @@ class PollViewController: UIViewController {
             //scrollView.height=self.view.height
             scrollView.contentSize=CGSizeMake(self.view.frame.size.width, y+100)
         }else{
-            scrollView.height=y+100
+            //anketaView.sizeToFit()
+            //print("y=\(y)")
+            //anketaView.height=y+150
         }
         stepbackButton.hidden=currentPage <= 1
         stepforwButton.hidden=currentPage >= maxpage

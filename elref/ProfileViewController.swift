@@ -3,7 +3,9 @@ import UIKit
 class ProfileViewController: UIViewController, UITableViewDataSource, UITableViewDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate {
     let userId=NSUserDefaults.standardUserDefaults().integerForKey("userId")
     let profileKeys:[String] = ["email","username","avatarPic","date","gender","family","kids","district","address0","address2","work",""];
-    let profileTitles:[String] = ["Электронная почта","Имя","Аватар","Год рождения","Мужской пол?","Женат или замужем?","Количество детей","Округ","На какой улице вы живёте","На какой улице вы работаете","Род деятельности",""];
+    let profileTitles:[String] = ["Электронная почта","Имя","Аватар","Год рождения","Пол","Семейное положение","Количество детей","Округ","На какой улице вы живёте","На какой улице вы работаете","Род деятельности",""];
+    let profileSelL:[String] = ["","","","","Женский","Неженат/незамужем","","","","","",""];
+    let profileSelR:[String] = ["","","","","Мужской","Женат/замужем","","","","","",""];
     let profilePlaceholders:[String] = ["пример@пример.рф","Иван Иванович Иванов","","1978","","","0","","","","Руководитель, учащийся безработный...",""];
     var profileValues:[String] = ["","","","","","","","","","","",""];
     /*
@@ -258,6 +260,10 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         case 1:
             let cell = tableView.dequeueReusableCellWithIdentifier("ProfileCheckboxTableViewCell", forIndexPath: indexPath) as! ProfileCheckboxTableViewCell
             cell.label.text = profileTitles[indexPath.row]
+            cell.leftLabel.text = profileSelL[indexPath.row]
+            cell.leftLabel.sizeToFit()
+            cell.rightLabel.text = profileSelR[indexPath.row]
+            cell.rightLabel.sizeToFit()
             cell.checkbox.setOn(profileValues[indexPath.row]=="1", animated: false)
             cell.tag=indexPath.row
             cell.controller = self

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="anketa0pic" customModule="elref">
+            <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jiQ-ZG-5RP">
+                    <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avatarPic" translatesAutoresizingMaskIntoConstraints="NO" id="3PX-ag-2Nr">
+                            <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="300" id="ac3-Xy-L5r"/>
+                                <constraint firstAttribute="width" constant="300" id="zjs-3k-8Kg"/>
+                            </constraints>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <exclude reference="zjs-3k-8Kg"/>
+                                </mask>
+                            </variation>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="3PX-ag-2Nr" firstAttribute="top" secondItem="jiQ-ZG-5RP" secondAttribute="top" id="4z7-Ge-JGQ"/>
+                        <constraint firstAttribute="trailing" secondItem="3PX-ag-2Nr" secondAttribute="trailing" id="EuO-hd-Wxg"/>
+                        <constraint firstItem="3PX-ag-2Nr" firstAttribute="leading" secondItem="jiQ-ZG-5RP" secondAttribute="leading" id="LaJ-YY-KFW"/>
+                        <constraint firstItem="3PX-ag-2Nr" firstAttribute="centerY" secondItem="jiQ-ZG-5RP" secondAttribute="centerY" id="VME-dm-WQd"/>
+                        <constraint firstItem="3PX-ag-2Nr" firstAttribute="centerX" secondItem="jiQ-ZG-5RP" secondAttribute="centerX" id="Y62-cI-Huw"/>
+                        <constraint firstItem="3PX-ag-2Nr" firstAttribute="leading" secondItem="jiQ-ZG-5RP" secondAttribute="leading" id="eae-ca-WmL"/>
+                        <constraint firstAttribute="trailing" secondItem="3PX-ag-2Nr" secondAttribute="trailing" id="gY9-J2-XM7"/>
+                        <constraint firstAttribute="bottom" secondItem="3PX-ag-2Nr" secondAttribute="bottom" id="oXx-t4-q2X"/>
+                        <constraint firstItem="3PX-ag-2Nr" firstAttribute="top" secondItem="jiQ-ZG-5RP" secondAttribute="top" id="voY-FW-ica"/>
+                    </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="VME-dm-WQd"/>
+                            <exclude reference="Y62-cI-Huw"/>
+                            <exclude reference="eae-ca-WmL"/>
+                            <exclude reference="gY9-J2-XM7"/>
+                            <exclude reference="oXx-t4-q2X"/>
+                            <exclude reference="voY-FW-ica"/>
+                        </mask>
+                    </variation>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="jiQ-ZG-5RP" secondAttribute="bottom" id="SJK-tK-XBO"/>
+                <constraint firstAttribute="trailing" secondItem="jiQ-ZG-5RP" secondAttribute="trailing" id="nAf-Lk-fye"/>
+                <constraint firstItem="jiQ-ZG-5RP" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="r9v-tv-jC1"/>
+                <constraint firstItem="jiQ-ZG-5RP" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="us3-JR-l9Y"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="mainView" destination="jiQ-ZG-5RP" id="KjE-bT-lsw"/>
+                <outlet property="pic" destination="3PX-ag-2Nr" id="loi-th-6dC"/>
+            </connections>
+        </view>
+    </objects>
+    <resources>
+        <image name="avatarPic" width="162" height="162"/>
+    </resources>
+</document>

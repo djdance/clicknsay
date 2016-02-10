@@ -13,6 +13,8 @@ class ProfileCheckboxTableViewCell: UITableViewCell {
     @IBOutlet weak var checkbox: UISwitch!
     var controller:ProfileViewController! = nil
 
+    @IBOutlet weak var leftLabel: UILabel!
+    @IBOutlet weak var rightLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         checkbox.addTarget(self, action: "switchChanged:", forControlEvents: UIControlEvents.ValueChanged)

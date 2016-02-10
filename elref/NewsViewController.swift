@@ -45,7 +45,11 @@ class NewsViewController: UIViewController {
         titleLabel.sizeToFit()
         descLabel.text=poll["msg"].stringValue
         descLabel.sizeToFit()
-        ico.hnk_setImageFromURL(NSURL(string: NSUserDefaults.standardUserDefaults().stringForKey("server")!+"/"+poll["pic"].stringValue)!)
+        if poll["pic"].stringValue.containsString("http"){
+            ico.hnk_setImageFromURL(NSURL(string: poll["pic"].stringValue)!)
+        } else {
+            ico.hnk_setImageFromURL(NSURL(string: NSUserDefaults.standardUserDefaults().stringForKey("server")!+"/"+poll["pic"].stringValue+"_t")!)
+        }
     }
 
     func updatePoll(){
@@ -60,7 +64,15 @@ class NewsViewController: UIViewController {
             })
             UIApplication.sharedApplication().networkActivityIndicatorVisible=false
             if error != nil || data == nil {
-                self.myToast("Ошибка",msg: "Нет связи с сервером\nПопробуйте позднее\n\n\(error != nil ? error!.localizedDescription : "no data")")
+                //self.myToast("Ошибка",msg: "Нет связи с сервером\nПопробуйте позднее\n\n\(error != nil ? error!.localizedDescription : "no data")")
+                dispatch_async(dispatch_get_main_queue(), {
+                    Popups.SharedInstance.ShowAlert(self, title: "Ошибка", message: "Нет связи с сервером\nПопробуйте снова\n\n\(error != nil ? error!.localizedDescription : "no data")", buttons: ["Повтор","Отмена"]) { (buttonPressed) -> Void in
+                        if buttonPressed == "Повтор" {
+                            self.updatePoll()
+                        }
+                    }
+                })
+
             } else {
                 self.json = JSON(data: data!)
                 //print("swity ok") // https://github.com/SwiftyJSON/SwiftyJSON

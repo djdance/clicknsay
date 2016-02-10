@@ -9,7 +9,9 @@ class RootViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var polls:JSON=nil
     var Vid=(NSUserDefaults.standardUserDefaults().boolForKey("pollFirst") ? 1 : 0)
     var eye=(NSUserDefaults.standardUserDefaults().boolForKey("eye") ? 1 : 0)
-
+    var refresher: UIRefreshControl!
+    var loadingData=false
+    
     @IBOutlet weak var drawerButton: UIBarButtonItem!
     @IBOutlet weak var rootTable: UITableView!
 
@@ -30,17 +32,21 @@ class RootViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 appDelegate.centerContainer!.centerViewController = myNavController
             }
             return
-        } else {
-            rootTable.delegate=self
-            rootTable.dataSource=self
-            if #available(iOS 8.0, *) {
-                rootTable.rowHeight = UITableViewAutomaticDimension
-                rootTable.estimatedRowHeight = 100.0;
-            } else {
-                rootTable.estimatedRowHeight = 250.0;
-            }
-            updatePolls()
         }
+        rootTable.delegate=self
+        rootTable.dataSource=self
+        if #available(iOS 8.0, *) {
+            rootTable.rowHeight = UITableViewAutomaticDimension
+            rootTable.estimatedRowHeight = 100.0;
+        } else {
+            rootTable.estimatedRowHeight = 300.0;
+        }
+        refresher = UIRefreshControl()
+        refresher.attributedTitle = NSAttributedString(string: "Проверить обновления опросов и новостей")
+        refresher.addTarget(self, action: "updatePolls", forControlEvents: UIControlEvents.ValueChanged)
+        rootTable.addSubview(refresher)
+        
+        updatePolls()
     }
     
     func updatePolls(){
@@ -52,26 +58,60 @@ class RootViewController: UIViewController, UITableViewDataSource, UITableViewDe
             self.view.makeToast("Связь потеряна2", duration: 2.0, position: .Bottom)
             return
         }
-        let urlPath = server+"/mob/getPolls.php?deviceId=\(keychain)&Vid=\(Vid)&eye=\(eye)"
-        //print("updateUserProfile запрос \(urlPath)")
+        var urlPath = server+"/mob/getPolls.php?deviceId=\(keychain)&Vid=\(Vid)&eye=\(eye)"
+        if polls.count>0 {
+            var d=polls["\(polls.count-1)"]["datetime"].stringValue
+            d=d.stringByAddingPercentEncodingWithAllowedCharacters(.URLHostAllowedCharacterSet())!
+            urlPath+="&fromDate=\(d)"
+        } else {
+            if let dict = NSBundle.mainBundle().infoDictionary {
+                if let version = dict["CFBundleShortVersionString"] as? String,
+                    let bundleVersion = dict["CFBundleVersion"] as? String,
+                    let appName = dict["CFBundleName"] as? String {
+                        //print("You're using \(appName) v\(version) (Build \(bundleVersion)).")
+                        urlPath+="&version=\(version)"
+                }
+            }
+        }
+        //print("updatePolls запрос \(urlPath)")
         self.view.makeToastActivity(.Center)
         UIApplication.sharedApplication().networkActivityIndicatorVisible=true
         NSURLSession.sharedSession().dataTaskWithURL(NSURL(string: urlPath)!, completionHandler: {data, response, error -> Void in
-            //print("checkExistedUser completed")
+            //print("updatePolls completed")
             dispatch_async(dispatch_get_main_queue(), {
                 self.view.hideToastActivity()
+                self.refresher.endRefreshing()
             })
             UIApplication.sharedApplication().networkActivityIndicatorVisible=false
             if error != nil || data == nil {
-                self.myToast("Ошибка",msg: "Нет связи с сервером\nПопробуйте позднее\n\n\(error != nil ? error!.localizedDescription : "no data")")
+                //self.myToast("Ошибка",msg: "Нет связи с сервером\nПопробуйте позднее\n\n\(error != nil ? error!.localizedDescription : "no data")")
+                dispatch_async(dispatch_get_main_queue(), {
+                    Popups.SharedInstance.ShowAlert(self, title: "Ошибка", message: "Нет связи с сервером\nПопробуйте снова\n\n\(error != nil ? error!.localizedDescription : "no data")", buttons: ["Повтор","Отмена"]) { (buttonPressed) -> Void in
+                        if buttonPressed == "Повтор" {
+                            self.updatePolls()
+                        }
+                    }
+                })
+
             } else {
-                self.polls = JSON(data: data!)
+                let mypolls = JSON(data: data!)
                 //print("swity ok") // https://github.com/SwiftyJSON/SwiftyJSON
-                if self.polls != nil && self.polls["error"].stringValue=="" {
-                    //print("polls: \(self.polls)")
-                    dispatch_async(dispatch_get_main_queue(), {
-                        self.rootTable.reloadData()
-                    })
+                //print("mypolls.count: \(mypolls.count)")
+                if mypolls != nil && mypolls["error"].stringValue=="" {
+                    if mypolls.count>0 {
+                        if self.polls==nil || self.polls.count==0 {
+                            self.polls=JSON([:])
+                        }
+                        for (_,subJson):(String, JSON) in mypolls {
+                            //print("self.polls.count=\(self.polls.count)")
+                            self.polls["\(self.polls.count)"]=subJson//.rawString()
+                            //self.polls[self.polls.count]=subJson//.rawString()
+                        }
+                        dispatch_async(dispatch_get_main_queue(), {
+                            self.rootTable.reloadData()
+                            self.loadingData=false
+                        })
+                    }
                 } else {
                     self.myToast("Ошибка",msg: "Сервер передал неверные данные3\nПопробуйте позднее")
                 }
@@ -159,7 +199,18 @@ class RootViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
+        if polls.count>0{
+            self.rootTable.backgroundView=nil
+            return 1
+        } else {
+            let label=UILabel.init(frame: CGRectMake(0,0,self.view.bounds.size.width,self.view.bounds.size.height))
+            label.text="Нет данных\nВключите интернет и обновите опросы\n\nМеню открывается слева"
+            label.numberOfLines=0
+            label.textAlignment=NSTextAlignment.Center
+            label.sizeToFit()
+            self.rootTable.backgroundView=label
+            return 0;
+        }
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -167,9 +218,9 @@ class RootViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var tale=indexPath.row%2
-        if (tale==0){
-            tale=indexPath.row/2
+        let tale1=indexPath.row%2
+        if tale1==0 {
+            let tale="\(indexPath.row/2)"
             switch polls[tale]["Vid"].intValue {
             case 1:
                 let cell = tableView.dequeueReusableCellWithIdentifier("Root1TableViewCell", forIndexPath: indexPath) as! Root1TableViewCell
@@ -191,7 +242,11 @@ class RootViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 cell.price.layer.masksToBounds = true
                 
                 cell.lockLabel.hidden = polls[tale]["done"].stringValue == "1" ? false : true
-                cell.ico.hnk_setImageFromURL(NSURL(string: NSUserDefaults.standardUserDefaults().stringForKey("server")!+"/"+polls[tale]["pic"].stringValue)!)
+                if polls[tale]["pic"].stringValue.containsString("http"){
+                    cell.ico.hnk_setImageFromURL(NSURL(string: polls[tale]["pic"].stringValue)!)
+                } else {
+                    cell.ico.hnk_setImageFromURL(NSURL(string: NSUserDefaults.standardUserDefaults().stringForKey("server")!+"/"+polls[tale]["pic"].stringValue+"_t")!)
+                }
                 return cell
             default:
                 let cell = tableView.dequeueReusableCellWithIdentifier("Root2TableViewCell", forIndexPath: indexPath) as! Root1TableViewCell
@@ -222,7 +277,11 @@ class RootViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 
                 //cell.lockLabel.hidden = true
                 cell.date.text = "Новости от "+polls[tale]["datetime"].stringValue
-                cell.ico.hnk_setImageFromURL(NSURL(string: NSUserDefaults.standardUserDefaults().stringForKey("server")!+"/"+polls[tale]["pic"].stringValue)!)
+                if polls[tale]["pic"].stringValue.containsString("http"){
+                    cell.ico.hnk_setImageFromURL(NSURL(string: polls[tale]["pic"].stringValue)!)
+                } else {
+                    cell.ico.hnk_setImageFromURL(NSURL(string: NSUserDefaults.standardUserDefaults().stringForKey("server")!+"/"+polls[tale]["pic"].stringValue+"_t")!)
+                }
                 return cell
             }
         } else {
@@ -263,7 +322,7 @@ class RootViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         var tale=indexPath.row%2
-        if (tale==0){
+        if tale==0 {
             if #available(iOS 8.0, *) {
                 return UITableViewAutomaticDimension
             } else {
@@ -274,11 +333,20 @@ class RootViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
     }
     
+    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell , forRowAtIndexPath indexPath: NSIndexPath) {
+        let tale=indexPath.row/2
+        if tale>=(polls.count-3) && !loadingData {
+            loadingData=true
+            //print("подгрузка!")
+            updatePolls()
+        }
+    }
+    
     override func shouldPerformSegueWithIdentifier(identifier: String?, sender: AnyObject?) -> Bool {
         if identifier == "pollSegue" {
             if let selectedCell = sender as? Root1TableViewCell {
                 let indexPath = rootTable.indexPathForCell(selectedCell)!
-                if polls[indexPath.row/2]["done"].stringValue == "1"{
+                if polls["\(indexPath.row/2)"]["done"].stringValue == "1"{
                     self.myToast("Отказ",msg: "Опрос уже пройден")
                     return false
                 }
@@ -294,7 +362,7 @@ class RootViewController: UIViewController, UITableViewDataSource, UITableViewDe
             let newsDetailViewController = segue.destinationViewController as! NewsViewController
             if let selectedCell = sender as? Root1TableViewCell {
                 let indexPath = rootTable.indexPathForCell(selectedCell)!
-                let tale=indexPath.row/2
+                let tale="\(indexPath.row/2)"
                 newsDetailViewController.poll=polls[tale]
                 //print ("selected \(newsDetailViewController.poll)")
             }
@@ -304,8 +372,8 @@ class RootViewController: UIViewController, UITableViewDataSource, UITableViewDe
             if let selectedCell = sender as? Root1TableViewCell {
                 let indexPath = rootTable.indexPathForCell(selectedCell)!
                 let tale=indexPath.row/2
-                if polls[tale]["done"].stringValue != "1"{
-                    pollDetailViewController.poll=polls[tale]
+                if polls["\(tale)"]["done"].stringValue != "1"{
+                    pollDetailViewController.poll=polls["\(tale)"]
                     pollDetailViewController.delegate=self
                 }
                 //print ("selected \(pollDetailViewController.poll)")

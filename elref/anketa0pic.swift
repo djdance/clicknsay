@@ -8,11 +8,12 @@
 
 import UIKit
 
-class anketa0pic: UIView {
+class anketa0: UIView {
+
+    @IBOutlet weak var titleLabel: UILabel!
 
     @IBOutlet weak var mainView: UIView!
     
-    @IBOutlet weak var pic: UIImageView!
     var itemId=0
     var type=0
     
