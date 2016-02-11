@@ -17,7 +17,7 @@ class NewsViewController: UIViewController {
     @IBOutlet weak var ico: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     
-    @IBOutlet weak var descLabel: UILabel!
+    @IBOutlet weak var descLabel: FRHyperLabel!
     @IBOutlet weak var шапка: UINavigationItem!
     
     override func viewDidLoad() {
@@ -43,15 +43,66 @@ class NewsViewController: UIViewController {
         date.text=poll["datetime"].stringValue
         titleLabel.text=poll["title"].stringValue
         titleLabel.sizeToFit()
-        descLabel.text=poll["msg"].stringValue
-        descLabel.sizeToFit()
-        if poll["pic"].stringValue.containsString("http"){
-            ico.hnk_setImageFromURL(NSURL(string: poll["pic"].stringValue)!)
+        if let s=poll["pic"].string where s != "" {
+            //print("ico=\(s)")
+            //ico.hidden=false
+            if s.containsString("http"){
+                ico.hnk_setImageFromURL(NSURL(string: s)!)
+            } else {
+                ico.hnk_setImageFromURL(NSURL(string: NSUserDefaults.standardUserDefaults().stringForKey("server")!+"/"+s+"_t")!)
+            }
         } else {
-            ico.hnk_setImageFromURL(NSURL(string: NSUserDefaults.standardUserDefaults().stringForKey("server")!+"/"+poll["pic"].stringValue+"_t")!)
+            //print("ico hidden")
+            //ico.hidden=true
         }
+        if var s=poll["msg"].string where (s != "" && (s.containsString("[a") || s.containsString("http") || s.containsString("www."))) {
+            //или же - textView.dataDetectorTypes = UIDataDetectorTypeLink;
+
+            s = s.stringByReplacingOccurrencesOfString("=www", withString: "=http://www")
+            s = s.stringByReplacingOccurrencesOfString(" www", withString: " http://www")
+            s = s.stringByReplacingOccurrencesOfString("[a href=", withString: "")
+            s = s.stringByReplacingOccurrencesOfString("[/a]", withString: "")
+            s = s.stringByReplacingOccurrencesOfString("]", withString: " ")
+            
+            let ss=s.lowercaseString
+            var links=[String]()
+            do {
+                let detector = try NSDataDetector(types: NSTextCheckingType.Link.rawValue)
+                detector
+                    .enumerateMatchesInString(
+                        ss, options: [],
+                        range: NSMakeRange(0, ss.characters.count),
+                        usingBlock: {
+                            (result: NSTextCheckingResult?,
+                            flags: NSMatchingFlags,
+                            stop: UnsafeMutablePointer<ObjCBool>) -> Void in
+                            //print(result?.URL)
+                            if let r=result {
+                                if let u=r.URL {
+                                    links.append("\(u.absoluteString)")
+                                }
+                            }
+                    })
+            } catch {
+                print(error)
+            }
+            
+            let attributes = [NSForegroundColorAttributeName: UIColor.blackColor(),
+                NSFontAttributeName: UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline)]
+            descLabel.attributedText = NSAttributedString(string: s, attributes: attributes)
+            let handler = {
+                (hyperLabel: FRHyperLabel!, substring: String!) -> Void in
+                //print("clicked! \(substring)")
+                UIApplication.sharedApplication().openURL(NSURL(string: substring)!)
+            }
+            descLabel.setLinksForSubstrings(links as [AnyObject], withLinkHandler: handler)
+        } else {
+            descLabel.text=poll["msg"].stringValue
+        }
+        descLabel.sizeToFit()
     }
 
+   
     func updatePoll(){
         let urlPath = NSUserDefaults.standardUserDefaults().stringForKey("server")!+"/mob/getPollItems.php?deviceId=\(KeychainWrapper.stringForKey("deviceId")!)&pollId=-\(poll["id"].stringValue)&ios=1"
         //print("updateUserProfile запрос \(urlPath)")

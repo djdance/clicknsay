@@ -73,6 +73,7 @@
 		FB99A6FB1C56C9560075AB38 /* ProfileButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB99A6FA1C56C9560075AB38 /* ProfileButtonTableViewCell.swift */; };
 		FB99A6FD1C5D27BE0075AB38 /* anketa0pic.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB99A6FC1C5D27BE0075AB38 /* anketa0pic.xib */; };
 		FB99A6FF1C5D27CD0075AB38 /* anketa0pic.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB99A6FE1C5D27CD0075AB38 /* anketa0pic.swift */; };
+		FB99A7191C6CF32A0075AB38 /* FRHyperLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = FB99A7181C6CF32A0075AB38 /* FRHyperLabel.m */; };
 		FBFF76921C3AE287002BEBC0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBFF76911C3AE287002BEBC0 /* AppDelegate.swift */; };
 		FBFF76971C3AE287002BEBC0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FBFF76951C3AE287002BEBC0 /* Main.storyboard */; };
 		FBFF769A1C3AE287002BEBC0 /* elref.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FBFF76981C3AE287002BEBC0 /* elref.xcdatamodeld */; };
@@ -176,6 +177,8 @@
 		FB99A6FA1C56C9560075AB38 /* ProfileButtonTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileButtonTableViewCell.swift; sourceTree = "<group>"; };
 		FB99A6FC1C5D27BE0075AB38 /* anketa0pic.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = anketa0pic.xib; sourceTree = "<group>"; };
 		FB99A6FE1C5D27CD0075AB38 /* anketa0pic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = anketa0pic.swift; sourceTree = "<group>"; };
+		FB99A7171C6CF32A0075AB38 /* FRHyperLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FRHyperLabel.h; sourceTree = "<group>"; };
+		FB99A7181C6CF32A0075AB38 /* FRHyperLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FRHyperLabel.m; sourceTree = "<group>"; };
 		FBFF768E1C3AE287002BEBC0 /* elref.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = elref.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FBFF76911C3AE287002BEBC0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FBFF76931C3AE287002BEBC0 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
@@ -278,6 +281,7 @@
 				FB2E4FF91C3EEF08000CA8A3 /* Popups.swift */,
 				FB2E4FF61C3EA9E1000CA8A3 /* Toast.swift */,
 				FB004F6E1C4C1C2400D193B5 /* CheckboxButton.swift */,
+				FB99A7091C6CED220075AB38 /* FRHyperLabel */,
 				FB04C7E01C46B39E000F2C27 /* Haneke */,
 				FB2E50011C427B86000CA8A3 /* Combox */,
 				FBFF76E71C3C1E17002BEBC0 /* FontAwesome */,
@@ -298,6 +302,15 @@
 				FB2E500A1C427B86000CA8A3 /* UIViewEx.swift */,
 			);
 			path = Combox;
+			sourceTree = "<group>";
+		};
+		FB99A7091C6CED220075AB38 /* FRHyperLabel */ = {
+			isa = PBXGroup;
+			children = (
+				FB99A7171C6CF32A0075AB38 /* FRHyperLabel.h */,
+				FB99A7181C6CF32A0075AB38 /* FRHyperLabel.m */,
+			);
+			name = FRHyperLabel;
 			sourceTree = "<group>";
 		};
 		FBFF76851C3AE287002BEBC0 = {
@@ -518,6 +531,7 @@
 				FB04C8171C4958B9000F2C27 /* GiftViewController.swift in Sources */,
 				FB2E4FF71C3EA9E1000CA8A3 /* Toast.swift in Sources */,
 				FB2E500C1C427B86000CA8A3 /* SWComboxCountry.swift in Sources */,
+				FB99A7191C6CF32A0075AB38 /* FRHyperLabel.m in Sources */,
 				FB2E50111C427B86000CA8A3 /* SWComboxView.swift in Sources */,
 				FB99A6FF1C5D27CD0075AB38 /* anketa0pic.swift in Sources */,
 				FB04C80C1C46B39E000F2C27 /* UIImageView+Haneke.swift in Sources */,
@@ -681,7 +695,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ru.orgcom.openlipetsk;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "elref/elref-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/djdance/Documents/elref/elref/elref-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -703,7 +717,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ru.orgcom.openlipetsk;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "elref/elref-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/djdance/Documents/elref/elref/elref-Bridging-Header.h";
 			};
 			name = Release;
 		};

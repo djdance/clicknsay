@@ -56,7 +56,16 @@ class ScoreViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     func updateUserScore(){
-        let urlPath = NSUserDefaults.standardUserDefaults().stringForKey("server")!+"/mob/getScores.php?deviceId=\(KeychainWrapper.stringForKey("deviceId")!)"
+        guard let server=NSUserDefaults.standardUserDefaults().stringForKey("server") else {
+            self.view.makeToast("Связь потеряна", duration: 2.0, position: .Bottom)
+            return
+        }
+        guard let keychain=KeychainWrapper.stringForKey("deviceId") else {
+            self.view.makeToast("Связь потеряна2", duration: 2.0, position: .Bottom)
+            return
+        }
+
+        let urlPath = server+"/mob/getScores.php?deviceId=\(keychain)"
         //print("updateUserProfile запрос \(urlPath)")
         UIApplication.sharedApplication().networkActivityIndicatorVisible=true
         NSURLSession.sharedSession().dataTaskWithURL(NSURL(string: urlPath)!, completionHandler: {data, response, error -> Void in

@@ -72,9 +72,9 @@ class RootViewController: UIViewController, UITableViewDataSource, UITableViewDe
                         urlPath+="&version=\(version)"
                 }
             }
+            self.view.makeToastActivity(.Center)
         }
         //print("updatePolls запрос \(urlPath)")
-        self.view.makeToastActivity(.Center)
         UIApplication.sharedApplication().networkActivityIndicatorVisible=true
         NSURLSession.sharedSession().dataTaskWithURL(NSURL(string: urlPath)!, completionHandler: {data, response, error -> Void in
             //print("updatePolls completed")
@@ -115,10 +115,10 @@ class RootViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 } else {
                     self.myToast("Ошибка",msg: "Сервер передал неверные данные3\nПопробуйте позднее")
                 }
-                delay(5) {
+                delay(1) {
                     self.updateUserProfile()
                 }
-                delay(2) {
+                delay(3) {
                     self.getMessages()
                 }
             }

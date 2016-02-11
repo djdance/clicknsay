@@ -97,8 +97,15 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
                 let c=v.characters.count
                 switch key {
                 case "email": if c>0 && c<2 {
-                    myToast("Ошибка", msg: "Некорректный email")
-                    return;
+                        myToast("Ошибка", msg: "Нет емейла")
+                        return;
+                    } else if c>0 {
+                        //let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}"
+                        let emailRegex = "[a-zа-яё0-9._-]+@[a-zа-яё0-9._-]+\\.+[a-zа-яё0-9._-]+"
+                        if !NSPredicate(format: "SELF MATCHES %@", emailRegex).evaluateWithObject(v) {
+                            myToast("Ошибка", msg: "Некорректный email")
+                            return;
+                        }
                     }
                 case "username": if c<2 {
                     myToast("Ошибка", msg: "Введите имя")
