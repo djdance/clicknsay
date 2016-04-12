@@ -40,14 +40,13 @@ public struct Shared {
         return Static.cache
     }
     
-    /*
     public static var JSONCache : Cache<JSON> {
         struct Static {
             static let name = "shared-json"
             static let cache = Cache<JSON>(name: name)
         }
         return Static.cache
-    }// djd */
+    }
 }
 
 func errorWithCode(code: Int, description: String) -> NSError {

@@ -327,11 +327,11 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     func fotoTap_(){
         //if #available(iOS 8.0, *) {
-        Popups.SharedInstance.ShowAlert(self, title: "Выберите источник", message: "Откуда взять ваш снимок?", buttons: ["Сфотографировать" , "Альбом"]) { (buttonPressed) -> Void in
+        Popups.SharedInstance.ShowAlert(self, title: "Выберите источник", message: "Откуда взять ваш снимок?", buttons: ["Сфотографировать" , "Из альбома"]) { (buttonPressed) -> Void in
             //print("buttonPressed=\(buttonPressed)")
             if buttonPressed == "Сфотографировать" {
                 self.fotoTapProc(0)
-            } else if buttonPressed == "Альбом" {
+            } else if buttonPressed == "Из альбома" {
                 self.fotoTapProc(1)
             }
         }

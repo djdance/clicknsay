@@ -93,7 +93,7 @@ class ScoreViewController: UIViewController, UITableViewDataSource, UITableViewD
                     dispatch_async(dispatch_get_main_queue(), {
                         self.scoreLabel.text="Заработано баллов: \(j["money"].intValue)"
                         self.statusLabel.text="Статус: \(j["status"].stringValue)"
-                        self.maxscoreLabel.text="\(j["score"].intValue)/\(j["maxscore"].intValue)"
+                        self.maxscoreLabel.text="\(100*j["score"].intValue/j["maxscore"].intValue)%"
                         self.scorePG.setProgress(Float(j["score"].intValue)/Float(j["maxscore"].intValue), animated:true)
                         self.scoreTable.reloadData()
                     })

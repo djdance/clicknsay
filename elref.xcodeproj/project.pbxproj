@@ -23,28 +23,6 @@
 		FB004F7B1C4EBEF700D193B5 /* anketa100.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB004F7A1C4EBEF700D193B5 /* anketa100.xib */; };
 		FB004F7D1C4EBF3700D193B5 /* anketa100.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB004F7C1C4EBF3700D193B5 /* anketa100.swift */; };
 		FB04C7B11C444AA6000F2C27 /* delay.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB04C7B01C444AA6000F2C27 /* delay.swift */; };
-		FB04C7F81C46B39E000F2C27 /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB04C7E11C46B39E000F2C27 /* Cache.swift */; };
-		FB04C7F91C46B39E000F2C27 /* CGSize+Swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB04C7E21C46B39E000F2C27 /* CGSize+Swift.swift */; };
-		FB04C7FA1C46B39E000F2C27 /* CryptoSwiftMD5.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB04C7E31C46B39E000F2C27 /* CryptoSwiftMD5.swift */; };
-		FB04C7FB1C46B39E000F2C27 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB04C7E41C46B39E000F2C27 /* Data.swift */; };
-		FB04C7FC1C46B39E000F2C27 /* DiskCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB04C7E51C46B39E000F2C27 /* DiskCache.swift */; };
-		FB04C7FD1C46B39E000F2C27 /* DiskFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB04C7E61C46B39E000F2C27 /* DiskFetcher.swift */; };
-		FB04C7FE1C46B39E000F2C27 /* Fetch.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB04C7E71C46B39E000F2C27 /* Fetch.swift */; };
-		FB04C7FF1C46B39E000F2C27 /* Fetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB04C7E81C46B39E000F2C27 /* Fetcher.swift */; };
-		FB04C8001C46B39E000F2C27 /* Format.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB04C7E91C46B39E000F2C27 /* Format.swift */; };
-		FB04C8011C46B39E000F2C27 /* Haneke.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB04C7EB1C46B39E000F2C27 /* Haneke.swift */; };
-		FB04C8021C46B39E000F2C27 /* Info-iOS.plist in Resources */ = {isa = PBXBuildFile; fileRef = FB04C7EC1C46B39E000F2C27 /* Info-iOS.plist */; };
-		FB04C8031C46B39E000F2C27 /* Info-tvOS.plist in Resources */ = {isa = PBXBuildFile; fileRef = FB04C7ED1C46B39E000F2C27 /* Info-tvOS.plist */; };
-		FB04C8041C46B39E000F2C27 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB04C7EE1C46B39E000F2C27 /* Log.swift */; };
-		FB04C8051C46B39E000F2C27 /* NetworkFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB04C7EF1C46B39E000F2C27 /* NetworkFetcher.swift */; };
-		FB04C8061C46B39E000F2C27 /* NSFileManager+Haneke.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB04C7F01C46B39E000F2C27 /* NSFileManager+Haneke.swift */; };
-		FB04C8071C46B39E000F2C27 /* NSHTTPURLResponse+Haneke.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB04C7F11C46B39E000F2C27 /* NSHTTPURLResponse+Haneke.swift */; };
-		FB04C8081C46B39E000F2C27 /* NSURLResponse+Haneke.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB04C7F21C46B39E000F2C27 /* NSURLResponse+Haneke.swift */; };
-		FB04C8091C46B39E000F2C27 /* String+Haneke.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB04C7F31C46B39E000F2C27 /* String+Haneke.swift */; };
-		FB04C80A1C46B39E000F2C27 /* UIButton+Haneke.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB04C7F41C46B39E000F2C27 /* UIButton+Haneke.swift */; };
-		FB04C80B1C46B39E000F2C27 /* UIImage+Haneke.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB04C7F51C46B39E000F2C27 /* UIImage+Haneke.swift */; };
-		FB04C80C1C46B39E000F2C27 /* UIImageView+Haneke.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB04C7F61C46B39E000F2C27 /* UIImageView+Haneke.swift */; };
-		FB04C80D1C46B39E000F2C27 /* UIView+Haneke.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB04C7F71C46B39E000F2C27 /* UIView+Haneke.swift */; };
 		FB04C80F1C46ED8E000F2C27 /* ScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB04C80E1C46ED8E000F2C27 /* ScoreViewController.swift */; };
 		FB04C8111C4824BC000F2C27 /* ScoreTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB04C8101C4824BC000F2C27 /* ScoreTableViewCell.swift */; };
 		FB04C8131C483837000F2C27 /* ShopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB04C8121C483837000F2C27 /* ShopViewController.swift */; };
@@ -70,6 +48,28 @@
 		FB2E50131C427B86000CA8A3 /* UIViewEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB2E500A1C427B86000CA8A3 /* UIViewEx.swift */; };
 		FB2E50171C42E825000CA8A3 /* KeychainWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB2E50161C42E825000CA8A3 /* KeychainWrapper.swift */; };
 		FB2E501D1C42F216000CA8A3 /* crc32.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB2E501C1C42F216000CA8A3 /* crc32.swift */; };
+		FB4F104D1CBD294300E07B91 /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4F10361CBD294300E07B91 /* Cache.swift */; };
+		FB4F104E1CBD294300E07B91 /* CGSize+Swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4F10371CBD294300E07B91 /* CGSize+Swift.swift */; };
+		FB4F104F1CBD294300E07B91 /* CryptoSwiftMD5.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4F10381CBD294300E07B91 /* CryptoSwiftMD5.swift */; };
+		FB4F10501CBD294300E07B91 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4F10391CBD294300E07B91 /* Data.swift */; };
+		FB4F10511CBD294300E07B91 /* DiskCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4F103A1CBD294300E07B91 /* DiskCache.swift */; };
+		FB4F10521CBD294300E07B91 /* DiskFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4F103B1CBD294300E07B91 /* DiskFetcher.swift */; };
+		FB4F10531CBD294300E07B91 /* Fetch.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4F103C1CBD294300E07B91 /* Fetch.swift */; };
+		FB4F10541CBD294300E07B91 /* Fetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4F103D1CBD294300E07B91 /* Fetcher.swift */; };
+		FB4F10551CBD294300E07B91 /* Format.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4F103E1CBD294300E07B91 /* Format.swift */; };
+		FB4F10561CBD294300E07B91 /* Haneke.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4F10401CBD294300E07B91 /* Haneke.swift */; };
+		FB4F10571CBD294300E07B91 /* Info-iOS.plist in Resources */ = {isa = PBXBuildFile; fileRef = FB4F10411CBD294300E07B91 /* Info-iOS.plist */; };
+		FB4F10581CBD294300E07B91 /* Info-tvOS.plist in Resources */ = {isa = PBXBuildFile; fileRef = FB4F10421CBD294300E07B91 /* Info-tvOS.plist */; };
+		FB4F10591CBD294300E07B91 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4F10431CBD294300E07B91 /* Log.swift */; };
+		FB4F105A1CBD294300E07B91 /* NetworkFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4F10441CBD294300E07B91 /* NetworkFetcher.swift */; };
+		FB4F105B1CBD294300E07B91 /* NSFileManager+Haneke.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4F10451CBD294300E07B91 /* NSFileManager+Haneke.swift */; };
+		FB4F105C1CBD294300E07B91 /* NSHTTPURLResponse+Haneke.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4F10461CBD294300E07B91 /* NSHTTPURLResponse+Haneke.swift */; };
+		FB4F105D1CBD294300E07B91 /* NSURLResponse+Haneke.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4F10471CBD294300E07B91 /* NSURLResponse+Haneke.swift */; };
+		FB4F105E1CBD294300E07B91 /* String+Haneke.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4F10481CBD294300E07B91 /* String+Haneke.swift */; };
+		FB4F105F1CBD294300E07B91 /* UIButton+Haneke.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4F10491CBD294300E07B91 /* UIButton+Haneke.swift */; };
+		FB4F10601CBD294300E07B91 /* UIImage+Haneke.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4F104A1CBD294300E07B91 /* UIImage+Haneke.swift */; };
+		FB4F10611CBD294300E07B91 /* UIImageView+Haneke.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4F104B1CBD294300E07B91 /* UIImageView+Haneke.swift */; };
+		FB4F10621CBD294300E07B91 /* UIView+Haneke.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4F104C1CBD294300E07B91 /* UIView+Haneke.swift */; };
 		FB99A6FB1C56C9560075AB38 /* ProfileButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB99A6FA1C56C9560075AB38 /* ProfileButtonTableViewCell.swift */; };
 		FB99A6FD1C5D27BE0075AB38 /* anketa0pic.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB99A6FC1C5D27BE0075AB38 /* anketa0pic.xib */; };
 		FB99A6FF1C5D27CD0075AB38 /* anketa0pic.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB99A6FE1C5D27CD0075AB38 /* anketa0pic.swift */; };
@@ -126,29 +126,6 @@
 		FB004F7A1C4EBEF700D193B5 /* anketa100.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = anketa100.xib; sourceTree = "<group>"; };
 		FB004F7C1C4EBF3700D193B5 /* anketa100.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = anketa100.swift; sourceTree = "<group>"; };
 		FB04C7B01C444AA6000F2C27 /* delay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = delay.swift; sourceTree = "<group>"; };
-		FB04C7E11C46B39E000F2C27 /* Cache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cache.swift; sourceTree = "<group>"; };
-		FB04C7E21C46B39E000F2C27 /* CGSize+Swift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGSize+Swift.swift"; sourceTree = "<group>"; };
-		FB04C7E31C46B39E000F2C27 /* CryptoSwiftMD5.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CryptoSwiftMD5.swift; sourceTree = "<group>"; };
-		FB04C7E41C46B39E000F2C27 /* Data.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
-		FB04C7E51C46B39E000F2C27 /* DiskCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiskCache.swift; sourceTree = "<group>"; };
-		FB04C7E61C46B39E000F2C27 /* DiskFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiskFetcher.swift; sourceTree = "<group>"; };
-		FB04C7E71C46B39E000F2C27 /* Fetch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fetch.swift; sourceTree = "<group>"; };
-		FB04C7E81C46B39E000F2C27 /* Fetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fetcher.swift; sourceTree = "<group>"; };
-		FB04C7E91C46B39E000F2C27 /* Format.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Format.swift; sourceTree = "<group>"; };
-		FB04C7EA1C46B39E000F2C27 /* Haneke.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Haneke.h; sourceTree = "<group>"; };
-		FB04C7EB1C46B39E000F2C27 /* Haneke.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Haneke.swift; sourceTree = "<group>"; };
-		FB04C7EC1C46B39E000F2C27 /* Info-iOS.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Info-iOS.plist"; sourceTree = "<group>"; };
-		FB04C7ED1C46B39E000F2C27 /* Info-tvOS.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Info-tvOS.plist"; sourceTree = "<group>"; };
-		FB04C7EE1C46B39E000F2C27 /* Log.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
-		FB04C7EF1C46B39E000F2C27 /* NetworkFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkFetcher.swift; sourceTree = "<group>"; };
-		FB04C7F01C46B39E000F2C27 /* NSFileManager+Haneke.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSFileManager+Haneke.swift"; sourceTree = "<group>"; };
-		FB04C7F11C46B39E000F2C27 /* NSHTTPURLResponse+Haneke.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSHTTPURLResponse+Haneke.swift"; sourceTree = "<group>"; };
-		FB04C7F21C46B39E000F2C27 /* NSURLResponse+Haneke.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSURLResponse+Haneke.swift"; sourceTree = "<group>"; };
-		FB04C7F31C46B39E000F2C27 /* String+Haneke.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Haneke.swift"; sourceTree = "<group>"; };
-		FB04C7F41C46B39E000F2C27 /* UIButton+Haneke.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+Haneke.swift"; sourceTree = "<group>"; };
-		FB04C7F51C46B39E000F2C27 /* UIImage+Haneke.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Haneke.swift"; sourceTree = "<group>"; };
-		FB04C7F61C46B39E000F2C27 /* UIImageView+Haneke.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+Haneke.swift"; sourceTree = "<group>"; };
-		FB04C7F71C46B39E000F2C27 /* UIView+Haneke.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Haneke.swift"; sourceTree = "<group>"; };
 		FB04C80E1C46ED8E000F2C27 /* ScoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreViewController.swift; sourceTree = "<group>"; };
 		FB04C8101C4824BC000F2C27 /* ScoreTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreTableViewCell.swift; sourceTree = "<group>"; };
 		FB04C8121C483837000F2C27 /* ShopViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopViewController.swift; sourceTree = "<group>"; };
@@ -174,6 +151,29 @@
 		FB2E500A1C427B86000CA8A3 /* UIViewEx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewEx.swift; sourceTree = "<group>"; };
 		FB2E50161C42E825000CA8A3 /* KeychainWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainWrapper.swift; sourceTree = "<group>"; };
 		FB2E501C1C42F216000CA8A3 /* crc32.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = crc32.swift; sourceTree = "<group>"; };
+		FB4F10361CBD294300E07B91 /* Cache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cache.swift; sourceTree = "<group>"; };
+		FB4F10371CBD294300E07B91 /* CGSize+Swift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGSize+Swift.swift"; sourceTree = "<group>"; };
+		FB4F10381CBD294300E07B91 /* CryptoSwiftMD5.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CryptoSwiftMD5.swift; sourceTree = "<group>"; };
+		FB4F10391CBD294300E07B91 /* Data.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
+		FB4F103A1CBD294300E07B91 /* DiskCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiskCache.swift; sourceTree = "<group>"; };
+		FB4F103B1CBD294300E07B91 /* DiskFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiskFetcher.swift; sourceTree = "<group>"; };
+		FB4F103C1CBD294300E07B91 /* Fetch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fetch.swift; sourceTree = "<group>"; };
+		FB4F103D1CBD294300E07B91 /* Fetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fetcher.swift; sourceTree = "<group>"; };
+		FB4F103E1CBD294300E07B91 /* Format.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Format.swift; sourceTree = "<group>"; };
+		FB4F103F1CBD294300E07B91 /* Haneke.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Haneke.h; sourceTree = "<group>"; };
+		FB4F10401CBD294300E07B91 /* Haneke.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Haneke.swift; sourceTree = "<group>"; };
+		FB4F10411CBD294300E07B91 /* Info-iOS.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Info-iOS.plist"; sourceTree = "<group>"; };
+		FB4F10421CBD294300E07B91 /* Info-tvOS.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Info-tvOS.plist"; sourceTree = "<group>"; };
+		FB4F10431CBD294300E07B91 /* Log.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
+		FB4F10441CBD294300E07B91 /* NetworkFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkFetcher.swift; sourceTree = "<group>"; };
+		FB4F10451CBD294300E07B91 /* NSFileManager+Haneke.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSFileManager+Haneke.swift"; sourceTree = "<group>"; };
+		FB4F10461CBD294300E07B91 /* NSHTTPURLResponse+Haneke.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSHTTPURLResponse+Haneke.swift"; sourceTree = "<group>"; };
+		FB4F10471CBD294300E07B91 /* NSURLResponse+Haneke.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSURLResponse+Haneke.swift"; sourceTree = "<group>"; };
+		FB4F10481CBD294300E07B91 /* String+Haneke.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Haneke.swift"; sourceTree = "<group>"; };
+		FB4F10491CBD294300E07B91 /* UIButton+Haneke.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+Haneke.swift"; sourceTree = "<group>"; };
+		FB4F104A1CBD294300E07B91 /* UIImage+Haneke.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Haneke.swift"; sourceTree = "<group>"; };
+		FB4F104B1CBD294300E07B91 /* UIImageView+Haneke.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+Haneke.swift"; sourceTree = "<group>"; };
+		FB4F104C1CBD294300E07B91 /* UIView+Haneke.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Haneke.swift"; sourceTree = "<group>"; };
 		FB99A6FA1C56C9560075AB38 /* ProfileButtonTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileButtonTableViewCell.swift; sourceTree = "<group>"; };
 		FB99A6FC1C5D27BE0075AB38 /* anketa0pic.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = anketa0pic.xib; sourceTree = "<group>"; };
 		FB99A6FE1C5D27CD0075AB38 /* anketa0pic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = anketa0pic.swift; sourceTree = "<group>"; };
@@ -241,39 +241,10 @@
 			name = anketas;
 			sourceTree = "<group>";
 		};
-		FB04C7E01C46B39E000F2C27 /* Haneke */ = {
-			isa = PBXGroup;
-			children = (
-				FB04C7E11C46B39E000F2C27 /* Cache.swift */,
-				FB04C7E21C46B39E000F2C27 /* CGSize+Swift.swift */,
-				FB04C7E31C46B39E000F2C27 /* CryptoSwiftMD5.swift */,
-				FB04C7E41C46B39E000F2C27 /* Data.swift */,
-				FB04C7E51C46B39E000F2C27 /* DiskCache.swift */,
-				FB04C7E61C46B39E000F2C27 /* DiskFetcher.swift */,
-				FB04C7E71C46B39E000F2C27 /* Fetch.swift */,
-				FB04C7E81C46B39E000F2C27 /* Fetcher.swift */,
-				FB04C7E91C46B39E000F2C27 /* Format.swift */,
-				FB04C7EA1C46B39E000F2C27 /* Haneke.h */,
-				FB04C7EB1C46B39E000F2C27 /* Haneke.swift */,
-				FB04C7EC1C46B39E000F2C27 /* Info-iOS.plist */,
-				FB04C7ED1C46B39E000F2C27 /* Info-tvOS.plist */,
-				FB04C7EE1C46B39E000F2C27 /* Log.swift */,
-				FB04C7EF1C46B39E000F2C27 /* NetworkFetcher.swift */,
-				FB04C7F01C46B39E000F2C27 /* NSFileManager+Haneke.swift */,
-				FB04C7F11C46B39E000F2C27 /* NSHTTPURLResponse+Haneke.swift */,
-				FB04C7F21C46B39E000F2C27 /* NSURLResponse+Haneke.swift */,
-				FB04C7F31C46B39E000F2C27 /* String+Haneke.swift */,
-				FB04C7F41C46B39E000F2C27 /* UIButton+Haneke.swift */,
-				FB04C7F51C46B39E000F2C27 /* UIImage+Haneke.swift */,
-				FB04C7F61C46B39E000F2C27 /* UIImageView+Haneke.swift */,
-				FB04C7F71C46B39E000F2C27 /* UIView+Haneke.swift */,
-			);
-			path = Haneke;
-			sourceTree = "<group>";
-		};
 		FB2E4FF81C3EA9EC000CA8A3 /* дополнения */ = {
 			isa = PBXGroup;
 			children = (
+				FB4F10351CBD294300E07B91 /* Haneke */,
 				FB04C7B01C444AA6000F2C27 /* delay.swift */,
 				FB2E501C1C42F216000CA8A3 /* crc32.swift */,
 				FB2E50161C42E825000CA8A3 /* KeychainWrapper.swift */,
@@ -282,7 +253,6 @@
 				FB2E4FF61C3EA9E1000CA8A3 /* Toast.swift */,
 				FB004F6E1C4C1C2400D193B5 /* CheckboxButton.swift */,
 				FB99A7091C6CED220075AB38 /* FRHyperLabel */,
-				FB04C7E01C46B39E000F2C27 /* Haneke */,
 				FB2E50011C427B86000CA8A3 /* Combox */,
 				FBFF76E71C3C1E17002BEBC0 /* FontAwesome */,
 			);
@@ -302,6 +272,37 @@
 				FB2E500A1C427B86000CA8A3 /* UIViewEx.swift */,
 			);
 			path = Combox;
+			sourceTree = "<group>";
+		};
+		FB4F10351CBD294300E07B91 /* Haneke */ = {
+			isa = PBXGroup;
+			children = (
+				FB4F10361CBD294300E07B91 /* Cache.swift */,
+				FB4F10371CBD294300E07B91 /* CGSize+Swift.swift */,
+				FB4F10381CBD294300E07B91 /* CryptoSwiftMD5.swift */,
+				FB4F10391CBD294300E07B91 /* Data.swift */,
+				FB4F103A1CBD294300E07B91 /* DiskCache.swift */,
+				FB4F103B1CBD294300E07B91 /* DiskFetcher.swift */,
+				FB4F103C1CBD294300E07B91 /* Fetch.swift */,
+				FB4F103D1CBD294300E07B91 /* Fetcher.swift */,
+				FB4F103E1CBD294300E07B91 /* Format.swift */,
+				FB4F103F1CBD294300E07B91 /* Haneke.h */,
+				FB4F10401CBD294300E07B91 /* Haneke.swift */,
+				FB4F10411CBD294300E07B91 /* Info-iOS.plist */,
+				FB4F10421CBD294300E07B91 /* Info-tvOS.plist */,
+				FB4F10431CBD294300E07B91 /* Log.swift */,
+				FB4F10441CBD294300E07B91 /* NetworkFetcher.swift */,
+				FB4F10451CBD294300E07B91 /* NSFileManager+Haneke.swift */,
+				FB4F10461CBD294300E07B91 /* NSHTTPURLResponse+Haneke.swift */,
+				FB4F10471CBD294300E07B91 /* NSURLResponse+Haneke.swift */,
+				FB4F10481CBD294300E07B91 /* String+Haneke.swift */,
+				FB4F10491CBD294300E07B91 /* UIButton+Haneke.swift */,
+				FB4F104A1CBD294300E07B91 /* UIImage+Haneke.swift */,
+				FB4F104B1CBD294300E07B91 /* UIImageView+Haneke.swift */,
+				FB4F104C1CBD294300E07B91 /* UIView+Haneke.swift */,
+			);
+			name = Haneke;
+			path = Haneke2;
 			sourceTree = "<group>";
 		};
 		FB99A7091C6CED220075AB38 /* FRHyperLabel */ = {
@@ -474,7 +475,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FB04C8031C46B39E000F2C27 /* Info-tvOS.plist in Resources */,
 				FBFF769F1C3AE287002BEBC0 /* LaunchScreen.storyboard in Resources */,
 				FBFF769C1C3AE287002BEBC0 /* Assets.xcassets in Resources */,
 				FB004F751C4C35D400D193B5 /* anketa5.xib in Resources */,
@@ -484,11 +484,12 @@
 				FB004F7B1C4EBEF700D193B5 /* anketa100.xib in Resources */,
 				FB004F731C4C347700D193B5 /* anketa2.xib in Resources */,
 				FBFF76ED1C3C1E81002BEBC0 /* FontAwesome.otf in Resources */,
-				FB04C8021C46B39E000F2C27 /* Info-iOS.plist in Resources */,
 				FB004F691C4C12EF00D193B5 /* anketa1.xib in Resources */,
 				FB004F6D1C4C133900D193B5 /* anketa0.xib in Resources */,
 				FB2E50101C427B86000CA8A3 /* SWComboxTitle.xib in Resources */,
+				FB4F10571CBD294300E07B91 /* Info-iOS.plist in Resources */,
 				FBFF76971C3AE287002BEBC0 /* Main.storyboard in Resources */,
+				FB4F10581CBD294300E07B91 /* Info-tvOS.plist in Resources */,
 				FB99A6FD1C5D27BE0075AB38 /* anketa0pic.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -502,56 +503,56 @@
 			files = (
 				FB04C81D1C4A97AA000F2C27 /* Gift4TableViewCell.swift in Sources */,
 				FBFF76C91C3AFF6F002BEBC0 /* RootViewController.swift in Sources */,
+				FB4F105D1CBD294300E07B91 /* NSURLResponse+Haneke.swift in Sources */,
 				FB2E4FF31C3DBCEA000CA8A3 /* ProfileImageTableViewCell.swift in Sources */,
 				FB004F5C1C4BA7D900D193B5 /* NewsViewController.swift in Sources */,
-				FB04C8001C46B39E000F2C27 /* Format.swift in Sources */,
+				FB4F104D1CBD294300E07B91 /* Cache.swift in Sources */,
 				FB2E500E1C427B86000CA8A3 /* SWComboxHelper.swift in Sources */,
+				FB4F10601CBD294300E07B91 /* UIImage+Haneke.swift in Sources */,
 				FB04C8131C483837000F2C27 /* ShopViewController.swift in Sources */,
-				FB04C7FA1C46B39E000F2C27 /* CryptoSwiftMD5.swift in Sources */,
-				FB04C7FB1C46B39E000F2C27 /* Data.swift in Sources */,
-				FB04C80B1C46B39E000F2C27 /* UIImage+Haneke.swift in Sources */,
-				FB04C7FC1C46B39E000F2C27 /* DiskCache.swift in Sources */,
 				FBFF76921C3AE287002BEBC0 /* AppDelegate.swift in Sources */,
 				FB04C81B1C4A856A000F2C27 /* Gift2TableViewCell.swift in Sources */,
 				FB004F791C4E9DFA00D193B5 /* FeedbackViewController.swift in Sources */,
 				FB04C7B11C444AA6000F2C27 /* delay.swift in Sources */,
-				FB04C8051C46B39E000F2C27 /* NetworkFetcher.swift in Sources */,
 				FB04C8191C4A7789000F2C27 /* Gift1TableViewCell.swift in Sources */,
 				FB004F611C4BE39500D193B5 /* anketa0.swift in Sources */,
 				FBFF76E11C3B085F002BEBC0 /* MMDrawerBarButtonItem.m in Sources */,
+				FB4F105B1CBD294300E07B91 /* NSFileManager+Haneke.swift in Sources */,
 				FB004F6F1C4C1C2400D193B5 /* CheckboxButton.swift in Sources */,
-				FB04C8011C46B39E000F2C27 /* Haneke.swift in Sources */,
 				FBFF77011C3D8462002BEBC0 /* ProfileViewController.swift in Sources */,
-				FB04C80D1C46B39E000F2C27 /* UIView+Haneke.swift in Sources */,
-				FB04C8061C46B39E000F2C27 /* NSFileManager+Haneke.swift in Sources */,
-				FB04C7FD1C46B39E000F2C27 /* DiskFetcher.swift in Sources */,
 				FB04C8151C48414C000F2C27 /* ShopTableViewCell.swift in Sources */,
-				FB04C7FF1C46B39E000F2C27 /* Fetcher.swift in Sources */,
 				FB2E4FF51C3EA5AB000CA8A3 /* ProfileCheckboxTableViewCell.swift in Sources */,
+				FB4F105C1CBD294300E07B91 /* NSHTTPURLResponse+Haneke.swift in Sources */,
+				FB4F104E1CBD294300E07B91 /* CGSize+Swift.swift in Sources */,
+				FB4F10511CBD294300E07B91 /* DiskCache.swift in Sources */,
 				FB04C8171C4958B9000F2C27 /* GiftViewController.swift in Sources */,
 				FB2E4FF71C3EA9E1000CA8A3 /* Toast.swift in Sources */,
+				FB4F10551CBD294300E07B91 /* Format.swift in Sources */,
+				FB4F10591CBD294300E07B91 /* Log.swift in Sources */,
 				FB2E500C1C427B86000CA8A3 /* SWComboxCountry.swift in Sources */,
 				FB99A7191C6CF32A0075AB38 /* FRHyperLabel.m in Sources */,
+				FB4F105A1CBD294300E07B91 /* NetworkFetcher.swift in Sources */,
 				FB2E50111C427B86000CA8A3 /* SWComboxView.swift in Sources */,
+				FB4F104F1CBD294300E07B91 /* CryptoSwiftMD5.swift in Sources */,
+				FB4F10501CBD294300E07B91 /* Data.swift in Sources */,
 				FB99A6FF1C5D27CD0075AB38 /* anketa0pic.swift in Sources */,
-				FB04C80C1C46B39E000F2C27 /* UIImageView+Haneke.swift in Sources */,
-				FB04C80A1C46B39E000F2C27 /* UIButton+Haneke.swift in Sources */,
 				FB2E500F1C427B86000CA8A3 /* SWComboxTitle.swift in Sources */,
 				FBFF76F71C3C4B23002BEBC0 /* TermsViewController.swift in Sources */,
+				FB4F10561CBD294300E07B91 /* Haneke.swift in Sources */,
+				FB4F10531CBD294300E07B91 /* Fetch.swift in Sources */,
 				FB004F5A1C4AEBD000D193B5 /* Root1TableViewCell.swift in Sources */,
 				FB04C80F1C46ED8E000F2C27 /* ScoreViewController.swift in Sources */,
+				FB4F10521CBD294300E07B91 /* DiskFetcher.swift in Sources */,
 				FB004F671C4C12AB00D193B5 /* anketa1.swift in Sources */,
-				FB04C7F91C46B39E000F2C27 /* CGSize+Swift.swift in Sources */,
-				FB04C8041C46B39E000F2C27 /* Log.swift in Sources */,
+				FB4F10541CBD294300E07B91 /* Fetcher.swift in Sources */,
 				FBFF76E41C3B085F002BEBC0 /* UIViewController+MMDrawerController.m in Sources */,
+				FB4F105E1CBD294300E07B91 /* String+Haneke.swift in Sources */,
+				FB4F10611CBD294300E07B91 /* UIImageView+Haneke.swift in Sources */,
 				FBFF76E61C3B1201002BEBC0 /* drawerTableViewCell.swift in Sources */,
-				FB04C8081C46B39E000F2C27 /* NSURLResponse+Haneke.swift in Sources */,
-				FB04C7F81C46B39E000F2C27 /* Cache.swift in Sources */,
-				FB04C8091C46B39E000F2C27 /* String+Haneke.swift in Sources */,
 				FB2E4FFC1C418AD9000CA8A3 /* CityViewController.swift in Sources */,
 				FB004F5E1C4BCF2F00D193B5 /* PollViewController.swift in Sources */,
+				FB4F10621CBD294300E07B91 /* UIView+Haneke.swift in Sources */,
 				FB2E50171C42E825000CA8A3 /* KeychainWrapper.swift in Sources */,
-				FB04C7FE1C46B39E000F2C27 /* Fetch.swift in Sources */,
 				FB2E4FFE1C41A517000CA8A3 /* SwiftyJSON.swift in Sources */,
 				FB004F711C4C346C00D193B5 /* anketa2.swift in Sources */,
 				FB004F7D1C4EBF3700D193B5 /* anketa100.swift in Sources */,
@@ -562,11 +563,11 @@
 				FB004F771C4C35E100D193B5 /* anketa5.swift in Sources */,
 				FBFF76E21C3B085F002BEBC0 /* MMDrawerController.m in Sources */,
 				FBFF769A1C3AE287002BEBC0 /* elref.xcdatamodeld in Sources */,
-				FB04C8071C46B39E000F2C27 /* NSHTTPURLResponse+Haneke.swift in Sources */,
 				FBFF76EC1C3C1E81002BEBC0 /* Enum.swift in Sources */,
 				FBFF77031C3DA506002BEBC0 /* ProfileTextTableViewCell.swift in Sources */,
 				FBFF76EE1C3C1E81002BEBC0 /* FontAwesome.swift in Sources */,
 				FB2E4FFA1C3EEF08000CA8A3 /* Popups.swift in Sources */,
+				FB4F105F1CBD294300E07B91 /* UIButton+Haneke.swift in Sources */,
 				FBFF76E31C3B085F002BEBC0 /* MMDrawerVisualState.m in Sources */,
 				FB2E50131C427B86000CA8A3 /* UIViewEx.swift in Sources */,
 				FB2E501D1C42F216000CA8A3 /* crc32.swift in Sources */,

@@ -10,7 +10,7 @@ import UIKit
 
 // See: http://stackoverflow.com/questions/25922152/not-identical-to-self
 public protocol DataConvertible {
-    typealias Result
+    associatedtype Result
     
     static func convertFromData(data:NSData) -> Result?
 }
@@ -74,7 +74,6 @@ extension NSData : DataConvertible, DataRepresentable {
     
 }
 
-/*
 public enum JSON : DataConvertible, DataRepresentable {
     public typealias Result = JSON
     
@@ -125,4 +124,4 @@ public enum JSON : DataConvertible, DataRepresentable {
         }
     }
     
-}// djd */
+}

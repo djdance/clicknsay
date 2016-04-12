@@ -347,7 +347,7 @@ class RootViewController: UIViewController, UITableViewDataSource, UITableViewDe
             if let selectedCell = sender as? Root1TableViewCell {
                 let indexPath = rootTable.indexPathForCell(selectedCell)!
                 if polls["\(indexPath.row/2)"]["done"].stringValue == "1"{
-                    self.myToast("Отказ",msg: "Опрос уже пройден")
+                    self.myToast("Отказ",msg: "Опрос уже пройден, устарел или закрыт")
                     return false
                 }
             } else {
@@ -382,9 +382,11 @@ class RootViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
 
     func acceptData(data: AnyObject!) {
+        //print("rootview: acceptData");
         if let d = data {
             if d as! Bool {
                 //print("meed to reload polls");
+                self.polls=JSON([:])
                 updatePolls()
             }
         }

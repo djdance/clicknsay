@@ -465,7 +465,7 @@ class PollViewController: UIViewController {
             try request.HTTPBody = answers.rawData()
             //try request.HTTPBody =  NSJSONSerialization.dataWithJSONObject(q.dictionaryObject!)
         } catch {
-            myToast("Ошибка",msg: "Ошибка упаковки ответов\nПопробуйте поменять строки")
+            myToast("Ошибка",msg: "Ошибка упаковки ответов\nХм, такого ещё не было!\nПопробуйте изменить текст и удалить кавычки")
             return
         }
         request.addValue("application/json",forHTTPHeaderField: "Content-Type")

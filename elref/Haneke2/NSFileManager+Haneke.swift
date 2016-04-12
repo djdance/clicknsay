@@ -64,7 +64,6 @@ func < (lhs: NSDate, rhs: NSDate) -> Bool {
     return lhs.compare(rhs) == NSComparisonResult.OrderedAscending
 }
 
-/*
 func < (lhs: NSNumber, rhs: NSNumber) -> Bool {
     return lhs.compare(rhs) == NSComparisonResult.OrderedAscending
-}// djd */
+}
