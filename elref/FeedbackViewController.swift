@@ -71,11 +71,26 @@ class FeedbackViewController: UIViewController, MFMailComposeViewControllerDeleg
                 UIApplication.sharedApplication().openURL(emailURL)
             }
         }// */
+        var s="Опишите проблему: ...\n\n-----------------------\nНе стирайте эту строку:\n"
+        if let dict = NSBundle.mainBundle().infoDictionary {
+            if let version = dict["CFBundleShortVersionString"] as? String {
+                s+="Version: \(version)"
+            }
+        }
+        s+=", UID: \(NSUserDefaults.standardUserDefaults().integerForKey("userId"))"
+        if #available(iOS 8.0, *) {
+            s+=", Model: \(Device())"
+        } else {
+            s+=", Model: \(UIDevice.currentDevice().systemName)"
+        }
+        s+=", iOS: \(UIDevice.currentDevice().systemVersion)"
+        print("\(s)")
+
         if MFMailComposeViewController.canSendMail() {
             let mail = MFMailComposeViewController()
             mail.mailComposeDelegate = self
-            mail.setSubject("Вопрос из программы")
-            mail.setMessageBody("Вопрос в следующем: ...", isHTML: false)
+            mail.setSubject("Вопрос из приложения")
+            mail.setMessageBody(s, isHTML: false)
             mail.setToRecipients(["it-support@orgcom.ru"])
             presentViewController(mail, animated: true, completion: nil)
         } else {

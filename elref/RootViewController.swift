@@ -43,7 +43,7 @@ class RootViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
         refresher = UIRefreshControl()
         refresher.attributedTitle = NSAttributedString(string: "Проверить обновления опросов и новостей")
-        refresher.addTarget(self, action: "updatePolls", forControlEvents: UIControlEvents.ValueChanged)
+        refresher.addTarget(self, action: #selector(RootViewController.updatePolls), forControlEvents: UIControlEvents.ValueChanged)
         rootTable.addSubview(refresher)
         
         updatePolls()
@@ -243,9 +243,11 @@ class RootViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 
                 cell.lockLabel.hidden = polls[tale]["done"].stringValue == "1" ? false : true
                 if polls[tale]["pic"].stringValue.containsString("http"){
-                    cell.ico.hnk_setImageFromURL(NSURL(string: polls[tale]["pic"].stringValue)!)
+                    //cell.ico.hnk_setImageFromURL(NSURL(string: polls[tale]["pic"].stringValue)!)
+                    cell.ico.load(polls[tale]["pic"].stringValue)
                 } else {
-                    cell.ico.hnk_setImageFromURL(NSURL(string: NSUserDefaults.standardUserDefaults().stringForKey("server")!+"/"+polls[tale]["pic"].stringValue+"_t")!)
+                    //cell.ico.hnk_setImageFromURL(NSURL(string: NSUserDefaults.standardUserDefaults().stringForKey("server")!+"/"+polls[tale]["pic"].stringValue+"_t")!)
+                    cell.ico.load(NSUserDefaults.standardUserDefaults().stringForKey("server")!+"/"+polls[tale]["pic"].stringValue+"_t")
                 }
                 return cell
             default:
@@ -278,9 +280,12 @@ class RootViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 //cell.lockLabel.hidden = true
                 cell.date.text = "Новости от "+polls[tale]["datetime"].stringValue
                 if polls[tale]["pic"].stringValue.containsString("http"){
-                    cell.ico.hnk_setImageFromURL(NSURL(string: polls[tale]["pic"].stringValue)!)
+                    //cell.ico.hnk_setImageFromURL(NSURL(string: polls[tale]["pic"].stringValue)!)
+                    cell.ico.load(polls[tale]["pic"].stringValue)
                 } else {
-                    cell.ico.hnk_setImageFromURL(NSURL(string: NSUserDefaults.standardUserDefaults().stringForKey("server")!+"/"+polls[tale]["pic"].stringValue+"_t")!)
+                    //print("hnk_setImageFromURL=\(NSUserDefaults.standardUserDefaults().stringForKey("server")!+"/"+polls[tale]["pic"].stringValue+"_t")")
+                    //cell.ico.hnk_setImageFromURL(NSURL(string: NSUserDefaults.standardUserDefaults().stringForKey("server")!+"/"+polls[tale]["pic"].stringValue+"_t")!)
+                    cell.ico.load(NSUserDefaults.standardUserDefaults().stringForKey("server")!+"/"+polls[tale]["pic"].stringValue+"_t")
                 }
                 return cell
             }
@@ -388,6 +393,54 @@ class RootViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 //print("meed to reload polls");
                 self.polls=JSON([:])
                 updatePolls()
+            }
+        }
+
+        
+        if NSUserDefaults.standardUserDefaults().stringForKey("pushToken") == nil || NSUserDefaults.standardUserDefaults().stringForKey("pushToken") == "" {
+            delay(0.3) {
+                OneSignal.defaultClient().IdsAvailable({ (userId, pushToken) in
+                    //NSLog("UserId:%@", userId)
+                    if NSUserDefaults.standardUserDefaults().stringForKey("pushUserId") == nil || NSUserDefaults.standardUserDefaults().stringForKey("pushUserId") == "" {
+                        NSUserDefaults.standardUserDefaults().setObject(userId, forKey: "pushUserId")
+                        //print("записан")
+                    } else {
+                        //print("уже есть")
+                    }
+                    if (pushToken != nil) {
+                        //NSLog("pushToken:%@", pushToken)
+                        if NSUserDefaults.standardUserDefaults().stringForKey("pushToken") == nil || NSUserDefaults.standardUserDefaults().stringForKey("pushToken") == "" {
+                            NSUserDefaults.standardUserDefaults().setObject(pushToken, forKey: "pushToken")
+                            print("записан")
+                            var q=JSON([:])
+                            q["onlyPush"].stringValue = "1"
+                            q["pushUserIdIOS"].stringValue = NSUserDefaults.standardUserDefaults().stringForKey("pushUserId")!
+                            q["pushTokenIOS"].stringValue=NSUserDefaults.standardUserDefaults().stringForKey("pushToken")!
+                            let urlPath = NSUserDefaults.standardUserDefaults().stringForKey("server")!+"/mob/updateUser.php?deviceId=\(KeychainWrapper.stringForKey("deviceId")!)&profile=1"
+                            let request = NSMutableURLRequest(URL: NSURL(string: urlPath)!)
+                            request.HTTPMethod="POST"
+                            do {
+                                try request.HTTPBody = q.rawData()
+                            } catch {
+                                return
+                            }
+                            request.addValue("application/json",forHTTPHeaderField: "Content-Type")
+                            request.addValue("application/json",forHTTPHeaderField: "Accept")
+                            UIApplication.sharedApplication().networkActivityIndicatorVisible=true
+                            NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
+                                //print("updateUser.php completed, data=\(NSString(data: data!, encoding: NSUTF8StringEncoding)!)")
+                                UIApplication.sharedApplication().networkActivityIndicatorVisible=false
+                                print("передан")
+                            }).resume()
+
+                        } else {
+                            //print("уже есть")
+                        }
+                    } else {
+                        //print("pushToken=\(pushToken)")
+                        OneSignal.defaultClient().registerForPushNotifications()
+                    }
+                })
             }
         }
         

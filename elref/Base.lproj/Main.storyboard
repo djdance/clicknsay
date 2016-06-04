@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -21,7 +20,7 @@
         <!--Left Side View Controller-->
         <scene sceneID="9Jd-Vp-qFC">
             <objects>
-                <viewController storyboardIdentifier="LeftSideViewController" id="Ku7-e2-BVb" customClass="LeftSideViewController" customModule="elref" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LeftSideViewController" id="Ku7-e2-BVb" customClass="LeftSideViewController" customModule="clicknsay" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="za3-Vm-fSJ"/>
                         <viewControllerLayoutGuide type="bottom" id="TGJ-lj-CkT"/>
@@ -35,7 +34,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="separatorColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="drawerCell" rowHeight="100" id="1uC-zI-Ybt" customClass="drawerTableViewCell" customModule="elref" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="drawerCell" rowHeight="100" id="1uC-zI-Ybt" customClass="drawerTableViewCell" customModule="clicknsay" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="320" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1uC-zI-Ybt" id="Cu8-uq-H7b">
@@ -101,7 +100,7 @@
         <!--RootViewController-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="RootViewController" title="Root" id="BYZ-38-t0r" userLabel="RootViewController" customClass="RootViewController" customModule="elref" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RootViewController" title="Root" id="BYZ-38-t0r" userLabel="RootViewController" customClass="RootViewController" customModule="clicknsay" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -116,7 +115,7 @@
                                 <inset key="scrollIndicatorInsets" minX="0.0" minY="0.0" maxX="-3" maxY="0.0"/>
                                 <color key="separatorColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Root1TableViewCell" id="PRa-nh-DQ7" customClass="Root1TableViewCell" customModule="elref" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Root1TableViewCell" id="PRa-nh-DQ7" customClass="Root1TableViewCell" customModule="clicknsay" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="280" height="200"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PRa-nh-DQ7" id="Ieb-PL-Uhc">
@@ -212,7 +211,7 @@
                                             </segue>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Root2TableViewCell" id="BaX-mz-oek" customClass="Root1TableViewCell" customModule="elref" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Root2TableViewCell" id="BaX-mz-oek" customClass="Root1TableViewCell" customModule="clicknsay" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="228" width="280" height="200"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="BaX-mz-oek" id="YmD-xQ-AjQ">
@@ -291,7 +290,7 @@
                                             </segue>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Root0TableViewCell" textLabel="ed8-kH-jlO" rowHeight="10" style="IBUITableViewCellStyleDefault" id="Oy8-ib-0Mq" customClass="Root1TableViewCell" customModule="elref" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Root0TableViewCell" textLabel="ed8-kH-jlO" rowHeight="10" style="IBUITableViewCellStyleDefault" id="Oy8-ib-0Mq" customClass="Root1TableViewCell" customModule="clicknsay" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="428" width="280" height="10"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Oy8-ib-0Mq" id="aB1-Ww-I9f">
@@ -341,7 +340,7 @@
         <!--News View Controller-->
         <scene sceneID="xkn-UJ-LHe">
             <objects>
-                <viewController id="HfB-JB-0DT" customClass="NewsViewController" customModule="elref" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="HfB-JB-0DT" customClass="NewsViewController" customModule="clicknsay" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="R7Z-Wd-Ubl"/>
                         <viewControllerLayoutGuide type="bottom" id="Vjs-pR-k62"/>
@@ -494,7 +493,7 @@
         <!--Feedback View Controller-->
         <scene sceneID="T1b-0g-xfX">
             <objects>
-                <viewController storyboardIdentifier="FeedbackViewController" id="7tq-5e-mye" customClass="FeedbackViewController" customModule="elref" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FeedbackViewController" id="7tq-5e-mye" customClass="FeedbackViewController" customModule="clicknsay" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="mjc-qy-eQj"/>
                         <viewControllerLayoutGuide type="bottom" id="gUp-Qf-oye"/>
@@ -678,7 +677,7 @@
                                             <outlet property="sB" destination="lZN-bQ-q9N" id="nM4-UP-D68"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ProfileCheckboxTableViewCell" rowHeight="90" id="Op5-Xf-y8o" customClass="ProfileCheckboxTableViewCell" customModule="elref" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ProfileCheckboxTableViewCell" rowHeight="90" id="Op5-Xf-y8o" customClass="ProfileCheckboxTableViewCell" customModule="clicknsay" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="118" width="288" height="90"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Op5-Xf-y8o" id="bGr-3M-yqU">
@@ -733,7 +732,7 @@
                                             <outlet property="rightLabel" destination="zXd-7b-OfB" id="2ze-MO-WPq"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ProfileTextTableViewCell" rowHeight="90" id="SB2-9U-MBh" customClass="ProfileTextTableViewCell" customModule="elref" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ProfileTextTableViewCell" rowHeight="90" id="SB2-9U-MBh" customClass="ProfileTextTableViewCell" customModule="clicknsay" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="208" width="288" height="90"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="SB2-9U-MBh" id="anZ-vG-U9R">
@@ -767,7 +766,7 @@
                                             <outlet property="textEdit" destination="OSW-vV-d1q" id="wR4-Ov-lFd"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ProfileImageTableViewCell" rowHeight="310" id="DDy-tZ-YXA" customClass="ProfileImageTableViewCell" customModule="elref" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ProfileImageTableViewCell" rowHeight="310" id="DDy-tZ-YXA" customClass="ProfileImageTableViewCell" customModule="clicknsay" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="298" width="288" height="310"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DDy-tZ-YXA" id="ftD-cL-82H">
@@ -879,7 +878,7 @@
         <!--City View Controller-->
         <scene sceneID="2Xv-ED-IeB">
             <objects>
-                <viewController storyboardIdentifier="CityViewController" id="iim-gm-N0E" customClass="CityViewController" customModule="elref" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CityViewController" id="iim-gm-N0E" customClass="CityViewController" customModule="clicknsay" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Zro-Vg-I6K"/>
                         <viewControllerLayoutGuide type="bottom" id="tsi-cn-sgl"/>
@@ -1036,7 +1035,7 @@
         <!--Shop View Controller-->
         <scene sceneID="t48-vR-ai3">
             <objects>
-                <viewController storyboardIdentifier="ShopViewController" id="pzh-jO-y4G" customClass="ShopViewController" customModule="elref" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ShopViewController" id="pzh-jO-y4G" customClass="ShopViewController" customModule="clicknsay" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="aZa-36-D3H"/>
                         <viewControllerLayoutGuide type="bottom" id="OPz-Sy-ZUF"/>
@@ -1049,7 +1048,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationWidth="0.0" reuseIdentifier="ShopTableViewCell" id="mW2-JP-lHY" customClass="ShopTableViewCell" customModule="elref" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationWidth="0.0" reuseIdentifier="ShopTableViewCell" id="mW2-JP-lHY" customClass="ShopTableViewCell" customModule="clicknsay" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="320" height="130"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mW2-JP-lHY" id="FWe-6h-ZJF">
@@ -1179,7 +1178,7 @@
         <!--Gift View Controller-->
         <scene sceneID="nVr-QC-J3s">
             <objects>
-                <viewController id="Fpa-Au-uVp" customClass="GiftViewController" customModule="elref" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Fpa-Au-uVp" customClass="GiftViewController" customModule="clicknsay" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="JYl-6E-cNE"/>
                         <viewControllerLayoutGuide type="bottom" id="R47-li-7Pq"/>
@@ -1192,7 +1191,7 @@
                                 <rect key="frame" x="20" y="72" width="280" height="1428"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" layoutMarginsFollowReadableWidth="YES" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Gift1TableViewCell" rowHeight="300" id="m8T-ys-84E" customClass="Gift1TableViewCell" customModule="elref" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" layoutMarginsFollowReadableWidth="YES" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Gift1TableViewCell" rowHeight="300" id="m8T-ys-84E" customClass="Gift1TableViewCell" customModule="clicknsay" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="280" height="300"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="m8T-ys-84E" id="Fhc-LR-ZSZ">
@@ -1645,7 +1644,7 @@
                                 <rect key="frame" x="18" y="179" width="284" height="281"/>
                                 <color key="backgroundColor" red="0.90980392160000001" green="0.91372549020000005" blue="0.91764705879999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ScoreTableViewCell" id="s8z-yl-lkl" customClass="ScoreTableViewCell" customModule="elref" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ScoreTableViewCell" id="s8z-yl-lkl" customClass="ScoreTableViewCell" customModule="clicknsay" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="284" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="s8z-yl-lkl" id="LsK-DI-AgD">

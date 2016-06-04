@@ -47,9 +47,11 @@ class NewsViewController: UIViewController {
             //print("ico=\(s)")
             //ico.hidden=false
             if s.containsString("http"){
-                ico.hnk_setImageFromURL(NSURL(string: s)!)
+                //ico.hnk_setImageFromURL(NSURL(string: s)!)
+                ico.load(s)
             } else {
-                ico.hnk_setImageFromURL(NSURL(string: NSUserDefaults.standardUserDefaults().stringForKey("server")!+"/"+s+"_t")!)
+                ico.load(NSUserDefaults.standardUserDefaults().stringForKey("server")!+"/"+s+"_t")
+                //ico.hnk_setImageFromURL(NSURL(string: NSUserDefaults.standardUserDefaults().stringForKey("server")!+"/"+s+"_t")!)
             }
         } else {
             //print("ico hidden")

@@ -31,6 +31,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //testfligt отладка http://code.tutsplus.com/ru/tutorials/ios-8-beta-testing-with-testflight--cms-22224
         //https://developer.apple.com/library/mac/documentation/LanguagesUtilities/Conceptual/iTunesConnect_Guide_ru/Chapters/BetaTestingTheApp.html
         
+        //https://documentation.onesignal.com/v2.0/docs/installing-the-onesignal-ios-sdk
+        let oneSignal = OneSignal(launchOptions: launchOptions, appId: "0e69fee6-3a77-46b0-99c1-7613453e92d5", handleNotification: nil, autoRegister: false)
+        //OneSignal.defaultClient().enableInAppAlertNotification(true) //By default this is false and notifications will not be shown when the user is in your app,
         
         _ = self.window!.rootViewController
         let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)

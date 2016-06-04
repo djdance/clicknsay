@@ -103,7 +103,8 @@ class ShopViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 cell.price.backgroundColor=UIColor.lightGrayColor()
             }
         }
-        cell.ico.hnk_setImageFromURL(NSURL(string: NSUserDefaults.standardUserDefaults().stringForKey("server")!+"/"+json[indexPath.row]["pic"].stringValue)!)
+        //cell.ico.hnk_setImageFromURL(NSURL(string: NSUserDefaults.standardUserDefaults().stringForKey("server")!+"/"+json[indexPath.row]["pic"].stringValue)!)
+        cell.ico.load(NSUserDefaults.standardUserDefaults().stringForKey("server")!+"/"+json[indexPath.row]["pic"].stringValue)
         return cell
     }
 

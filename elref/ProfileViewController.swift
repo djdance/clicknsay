@@ -46,12 +46,19 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         drawerButton.setTitleTextAttributes(attributes, forState: .Normal)
         cityButton.setTitleTextAttributes(attributes, forState: .Normal)
         //drawerButton.title=String.fontAwesomeIconWithName(.Bars)
-        let cache=Shared.imageCache
+        //let cache=Shared.imageCache
+        /*
         cache.fetch(URL: NSURL(string: NSUserDefaults.standardUserDefaults().stringForKey("server")!+"/upload/user\(userId)_t")!).onSuccess { image in
             self.avatarPic=image
             //print("cache fetched");
             NSUserDefaults.standardUserDefaults().setObject(UIImagePNGRepresentation(image), forKey: "avatarPic")
-        }
+        }// */
+        let cache=UIImageView()
+        cache.load(NSUserDefaults.standardUserDefaults().stringForKey("server")!+"/upload/user\(userId)_t", placeholder: avatarPic, completionHandler: { _ in
+            if self.avatarPic != nil {
+                NSUserDefaults.standardUserDefaults().setObject(UIImagePNGRepresentation(self.avatarPic!), forKey: "avatarPic")
+            }
+        })
         
 
         var filled=true
@@ -80,7 +87,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
             //https://github.com/scalessec/Toast-Swift
             self.view.makeToast("Заполните профиль!\nПолучите дополнительные баллы!", duration: 2.0, position: .Center)
         }
-        
+      
        
     }
 
@@ -147,6 +154,14 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         }
         //print ("q=\(q)")
         if q != nil {
+            if NSUserDefaults.standardUserDefaults().stringForKey("pushUserId") != nil {
+                //print("pushUserId=\(NSUserDefaults.standardUserDefaults().stringForKey("pushUserId")!)")
+                q["pushUserIdIOS"].stringValue = NSUserDefaults.standardUserDefaults().stringForKey("pushUserId")!
+            }
+            if NSUserDefaults.standardUserDefaults().stringForKey("pushToken") != nil {
+                q["pushTokenIOS"].stringValue=NSUserDefaults.standardUserDefaults().stringForKey("pushToken")!
+            }
+            
             let urlPath = NSUserDefaults.standardUserDefaults().stringForKey("server")!+"/mob/updateUser.php?deviceId=\(KeychainWrapper.stringForKey("deviceId")!)&profile=1"
             let request = NSMutableURLRequest(URL: NSURL(string: urlPath)!)
             request.HTTPMethod="POST"
@@ -171,6 +186,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
                     var  s=NSString(data: data!, encoding: NSUTF8StringEncoding)!
                     s=s.stringByReplacingOccurrencesOfString("\n",withString: "")
                     s=s.stringByReplacingOccurrencesOfString("'",withString: "\"")
+                    //print("s=\(s)")
                     q = JSON.parse(s as String)
                     //print("swity ok") // https://github.com/SwiftyJSON/SwiftyJSON
                     //print("q=\(q), data=\(NSString(data: data!, encoding: NSUTF8StringEncoding)!)")
@@ -280,7 +296,8 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
             cell.label.text = profileTitles[indexPath.row]
             if avatarPic == nil {
                 //print("tableView: avatarPic==nil")
-                cell.foto.hnk_setImageFromURL(NSURL(string: NSUserDefaults.standardUserDefaults().stringForKey("server")!+"/upload/user\(userId)_t")!)
+                //cell.foto.hnk_setImageFromURL(NSURL(string: NSUserDefaults.standardUserDefaults().stringForKey("server")!+"/upload/user\(userId)_t")!)
+                cell.foto.load(NSUserDefaults.standardUserDefaults().stringForKey("server")!+"/upload/user\(userId)_t")
             } else {
                 //print("tableView: avatarPic ok!")
                 cell.foto.image=avatarPic;

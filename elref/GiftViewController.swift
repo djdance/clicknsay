@@ -213,7 +213,8 @@ class GiftViewController: UIViewController, UITableViewDataSource, UITableViewDe
         switch indexPath.row {
         case 0:
             let cell = tableView.dequeueReusableCellWithIdentifier("Gift1TableViewCell", forIndexPath: indexPath) as! Gift1TableViewCell
-            cell.ico.hnk_setImageFromURL(NSURL(string: _ico)!)
+            //cell.ico.hnk_setImageFromURL(NSURL(string: _ico)!)
+            cell.ico.load(_ico)
             cell.titleLabel.text=_title+"\n"
             cell.descLabel.text=_desc+"\n"
             cell.priceLabel.text="  Стоимость \(_price) баллов   "
@@ -243,7 +244,8 @@ class GiftViewController: UIViewController, UITableViewDataSource, UITableViewDe
             let cell = tableView.dequeueReusableCellWithIdentifier("Gift4TableViewCell", forIndexPath: indexPath) as! Gift4TableViewCell
             //print("_banner=\(_banner), w-h=\(cell.banner.width) - \(cell.banner.height)")
             if _banner != "" && cell.banner.height>0 && cell.banner.width>0 {
-                cell.banner.hnk_setImageFromURL(NSURL(string: _banner)!)
+                //cell.banner.hnk_setImageFromURL(NSURL(string: _banner)!)
+                cell.banner.load(_banner)
             }
             cell.bannerUrl=_bannerUrl
             cell.urlLabel.text="http://"+_bannerUrl

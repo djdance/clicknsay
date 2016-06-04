@@ -155,9 +155,11 @@ class PollViewController: UIViewController {
                             anketa.x=0
                             anketa.width=scrollView.width//-anketa.width)*0.5
                             if pic.containsString("http"){
-                                anketa.pic.hnk_setImageFromURL(NSURL(string: pic)!)
+                                //anketa.pic.hnk_setImageFromURL(NSURL(string: pic)!)
+                                anketa.pic.load(pic)
                             } else {
-                                anketa.pic.hnk_setImageFromURL(NSURL(string: NSUserDefaults.standardUserDefaults().stringForKey("server")!+"/"+pic)!)
+                                //anketa.pic.hnk_setImageFromURL(NSURL(string: NSUserDefaults.standardUserDefaults().stringForKey("server")!+"/"+pic)!)
+                                anketa.pic.load(NSUserDefaults.standardUserDefaults().stringForKey("server")!+"/"+pic)
                             }
                             anketa.updateConstraints()
                             anketaView.addSubview(anketa)
