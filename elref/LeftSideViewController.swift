@@ -12,8 +12,8 @@ class LeftSideViewController: UIViewController, UITableViewDataSource, UITableVi
 
     @IBOutlet weak var menuItemsTable: UITableView!
     
-    var menuItems:[String] = ["Опросы","Новости","Призы","Мои баллы","Мой профиль","Настройки","Справка","Отзыв"];
-    var menuIcons:[String] = ["\u{f046}","\u{f1ea}","\u{f06b}","\u{f158}","\u{f007}","\u{f013}","\u{f059}","\u{f003}"];
+    var menuItems:[String] = ["START","My kids","Words","Howto","Settings","Buy","Newborn apps"];
+    var menuIcons:[String] = ["\u{f046}","\u{f1ea}","\u{f06b}","\u{f158}","\u{f007}","\u{f013}","\u{f059}"];
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,39 +40,14 @@ class LeftSideViewController: UIViewController, UITableViewDataSource, UITableVi
         var myViewController:UIViewController = self.storyboard?.instantiateViewControllerWithIdentifier("RootViewController") as! RootViewController
 
         switch indexPath.row {
-        case 0:
-            (myViewController as! RootViewController).Vid=1
-        case 1:
-            (myViewController as! RootViewController).Vid = -1
-        case 2:
-            myViewController = self.storyboard?.instantiateViewControllerWithIdentifier("ShopViewController") as! ShopViewController
-        case 3:
-            myViewController = self.storyboard?.instantiateViewControllerWithIdentifier("ScoreViewController") as! ScoreViewController
         case 4:
-            myViewController = self.storyboard?.instantiateViewControllerWithIdentifier("ProfileViewController") as! ProfileViewController
-        case 5:
-            if #available(iOS 8.0, *) {
-                UIApplication.sharedApplication().openURL(NSURL(string:UIApplicationOpenSettingsURLString)!)
-            } else {
-                // Fallback on earlier versions
-                let sendMailErrorAlert = UIAlertView(title: "Инструкция"
-                    , message: "У вас устаревшая iOS7.\n\nЧтобы открыть опции, нажмите Home, запустите системные Настройки и промотайте вниз"
-                    , delegate: self
-                    , cancelButtonTitle: "OK")
-                sendMailErrorAlert.show()
-                //UIApplication.sharedApplication().openURL(NSURL(string: "prefs://")!)
-            }
-
-        case 6:
-            myViewController = self.storyboard?.instantiateViewControllerWithIdentifier("TermsViewController") as! TermsViewController
-        case 7:
-            myViewController = self.storyboard?.instantiateViewControllerWithIdentifier("FeedbackViewController") as! FeedbackViewController
+            UIApplication.sharedApplication().openURL(NSURL(string:UIApplicationOpenSettingsURLString)!)
         default: break
         }
         let myNavController = UINavigationController(rootViewController: myViewController)
         let appDelegate:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         appDelegate.centerContainer!.centerViewController = myNavController
-        if indexPath.row != 5 {
+        if indexPath.row != 4 {
             appDelegate.centerContainer!.toggleDrawerSide(MMDrawerSide.Left, animated: true, completion: nil)
         }
     }

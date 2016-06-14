@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>Title</key>
-	<string>Электронный Референдум - Настройки</string>
+	<string>Click&apos;n&apos;Say - Settings</string>
 	<key>StringsTable</key>
 	<string>Root</string>
 	<key>PreferenceSpecifiers</key>
@@ -12,47 +12,17 @@
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 			<key>Title</key>
-			<string>Основные</string>
+			<string>Main</string>
 		</dict>
 		<dict>
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 			<key>Title</key>
-			<string>Не смешивать новости и опросы</string>
+			<string>Start from game (kid mode)</string>
 			<key>Key</key>
-			<string>pollFirst</string>
+			<string>gameFirst</string>
 			<key>DefaultValue</key>
 			<false/>
-		</dict>
-		<dict>
-			<key>Type</key>
-			<string>PSToggleSwitchSpecifier</string>
-			<key>Title</key>
-			<string>Скрывать старые опросы</string>
-			<key>Key</key>
-			<string>eye</string>
-			<key>DefaultValue</key>
-			<true/>
-		</dict>
-		<dict>
-			<key>Type</key>
-			<string>PSToggleSwitchSpecifier</string>
-			<key>Title</key>
-			<string>Меньше уведомлений (скрывать ошибки и попапы)</string>
-			<key>Key</key>
-			<string>noMsg</string>
-			<key>DefaultValue</key>
-			<false/>
-		</dict>
-		<dict>
-			<key>Type</key>
-			<string>PSToggleSwitchSpecifier</string>
-			<key>Title</key>
-			<string>Исправлять сбои (анонимная статистика)</string>
-			<key>Key</key>
-			<string>sendStat</string>
-			<key>DefaultValue</key>
-			<true/>
 		</dict>
 	</array>
 </dict>

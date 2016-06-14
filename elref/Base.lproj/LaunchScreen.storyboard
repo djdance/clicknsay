@@ -15,18 +15,19 @@
                         <viewControllerLayoutGuide type="bottom" id="xb3-aO-Qok"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="700"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="iTunesArtwork" translatesAutoresizingMaskIntoConstraints="NO" id="Nbl-nO-6bR">
-                                <rect key="frame" x="0.0" y="160" width="320" height="320"/>
+                                <rect key="frame" x="352" y="380" width="320" height="320"/>
                                 <color key="backgroundColor" red="0.29803921568627451" green="0.85098039215686272" blue="0.39215686274509803" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="500" id="9wz-6w-3sS"/>
                                     <constraint firstAttribute="width" secondItem="Nbl-nO-6bR" secondAttribute="height" multiplier="1:1" id="NR9-NY-wMf"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Click and Say" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1lo-2o-ygb">
-                                <rect key="frame" x="20" y="51" width="275" height="69"/>
+                                <rect key="frame" x="239" y="50" width="547" height="69"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="42"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -37,20 +38,29 @@
                             <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="Nbl-nO-6bR" secondAttribute="bottom" id="3Fr-NF-XKm"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Nbl-nO-6bR" secondAttribute="trailing" constant="-20" id="4Rh-ZA-xqO"/>
                             <constraint firstAttribute="trailingMargin" secondItem="1lo-2o-ygb" secondAttribute="trailing" constant="5" id="C4d-6D-q9d"/>
+                            <constraint firstItem="1lo-2o-ygb" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="FJe-Gt-RlH"/>
                             <constraint firstItem="Nbl-nO-6bR" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="-20" id="IMR-ZF-xJn"/>
                             <constraint firstItem="Nbl-nO-6bR" firstAttribute="top" secondItem="1lo-2o-ygb" secondAttribute="bottom" constant="40" id="Ivg-3W-dd8"/>
+                            <constraint firstItem="Nbl-nO-6bR" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="Kiw-Rm-uCv"/>
                             <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="Nbl-nO-6bR" secondAttribute="bottom" id="UGF-X5-UZh"/>
+                            <constraint firstItem="1lo-2o-ygb" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="31" id="hgB-f7-xrb"/>
                             <constraint firstItem="Nbl-nO-6bR" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="topMargin" id="nUh-AD-7HB"/>
                             <constraint firstItem="1lo-2o-ygb" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" id="uqd-be-iUX"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
+                                <exclude reference="C4d-6D-q9d"/>
+                                <exclude reference="uqd-be-iUX"/>
+                                <exclude reference="4Rh-ZA-xqO"/>
+                                <exclude reference="IMR-ZF-xJn"/>
+                                <exclude reference="Ivg-3W-dd8"/>
                                 <exclude reference="nUh-AD-7HB"/>
                                 <exclude reference="3Fr-NF-XKm"/>
                             </mask>
                         </variation>
                     </view>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="1024" height="700"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
