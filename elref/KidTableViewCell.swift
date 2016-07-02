@@ -31,7 +31,7 @@ class KidTableViewCell: UITableViewCell {
         title.layer.masksToBounds = true
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(titleButtonTapped(_:)))
         title.addGestureRecognizer(tapGestureRecognizer)
-        title.userInteractionEnabled = true
+        title.userInteractionEnabled = false
 
         ico.layer.cornerRadius = 5
         ico.layer.masksToBounds = true

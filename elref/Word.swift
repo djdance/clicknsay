@@ -11,10 +11,11 @@ import RealmSwift
 
 class Word: Object {
     
-    dynamic var name = ""
+    dynamic var title = ""
     dynamic var createdAt = NSDate()
     dynamic var voice = 0
     dynamic var isEnabled = false
+    dynamic var repeats = 0
     
 // Specify properties to ignore (Realm won't persist these)
     

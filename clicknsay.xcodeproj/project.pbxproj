@@ -13,11 +13,12 @@
 		FB1348EB1CC810A100B177D8 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1348EA1CC810A100B177D8 /* Device.swift */; };
 		FB2BA5071D05FCE1003E9EF5 /* Word.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB2BA5061D05FCE1003E9EF5 /* Word.swift */; };
 		FB2BA5091D05FDEB003E9EF5 /* Kids.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB2BA5081D05FDEB003E9EF5 /* Kids.swift */; };
-		FB2BA50B1D0DC583003E9EF5 /* KidTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB2BA50A1D0DC583003E9EF5 /* KidTableViewCell.swift */; };
 		FB2BA50D1D10A929003E9EF5 /* WordsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB2BA50C1D10A929003E9EF5 /* WordsViewController.swift */; };
 		FB2E4FF71C3EA9E1000CA8A3 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB2E4FF61C3EA9E1000CA8A3 /* Toast.swift */; };
 		FB2E4FFA1C3EEF08000CA8A3 /* Popups.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB2E4FF91C3EEF08000CA8A3 /* Popups.swift */; };
 		FB2E4FFE1C41A517000CA8A3 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB2E4FFD1C41A517000CA8A3 /* SwiftyJSON.swift */; };
+		FB9E2D1D1D2005B90072EBE4 /* KidTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9E2D1C1D2005B90072EBE4 /* KidTableViewCell.swift */; };
+		FB9E2D1F1D2005D00072EBE4 /* WordTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9E2D1E1D2005D00072EBE4 /* WordTableViewCell.swift */; };
 		FBFF76921C3AE287002BEBC0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBFF76911C3AE287002BEBC0 /* AppDelegate.swift */; };
 		FBFF76971C3AE287002BEBC0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FBFF76951C3AE287002BEBC0 /* Main.storyboard */; };
 		FBFF769A1C3AE287002BEBC0 /* elref.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FBFF76981C3AE287002BEBC0 /* elref.xcdatamodeld */; };
@@ -68,11 +69,12 @@
 		FB1348EA1CC810A100B177D8 /* Device.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
 		FB2BA5061D05FCE1003E9EF5 /* Word.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Word.swift; sourceTree = "<group>"; };
 		FB2BA5081D05FDEB003E9EF5 /* Kids.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Kids.swift; sourceTree = "<group>"; };
-		FB2BA50A1D0DC583003E9EF5 /* KidTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KidTableViewCell.swift; sourceTree = "<group>"; };
 		FB2BA50C1D10A929003E9EF5 /* WordsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WordsViewController.swift; sourceTree = "<group>"; };
 		FB2E4FF61C3EA9E1000CA8A3 /* Toast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
 		FB2E4FF91C3EEF08000CA8A3 /* Popups.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Popups.swift; sourceTree = "<group>"; };
 		FB2E4FFD1C41A517000CA8A3 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
+		FB9E2D1C1D2005B90072EBE4 /* KidTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KidTableViewCell.swift; sourceTree = "<group>"; };
+		FB9E2D1E1D2005D00072EBE4 /* WordTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WordTableViewCell.swift; sourceTree = "<group>"; };
 		FBFF768E1C3AE287002BEBC0 /* clicknsay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = clicknsay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FBFF76911C3AE287002BEBC0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FBFF76931C3AE287002BEBC0 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
@@ -174,7 +176,8 @@
 				FBFF76911C3AE287002BEBC0 /* AppDelegate.swift */,
 				FBFF76931C3AE287002BEBC0 /* RootViewController.swift */,
 				FB2BA50C1D10A929003E9EF5 /* WordsViewController.swift */,
-				FB2BA50A1D0DC583003E9EF5 /* KidTableViewCell.swift */,
+				FB9E2D1E1D2005D00072EBE4 /* WordTableViewCell.swift */,
+				FB9E2D1C1D2005B90072EBE4 /* KidTableViewCell.swift */,
 				FBFF76951C3AE287002BEBC0 /* Main.storyboard */,
 				FBFF769D1C3AE287002BEBC0 /* LaunchScreen.storyboard */,
 				FBFF76FE1C3C70B6002BEBC0 /* Settings.bundle */,
@@ -362,14 +365,15 @@
 			files = (
 				FBFF76C91C3AFF6F002BEBC0 /* RootViewController.swift in Sources */,
 				FB2BA5091D05FDEB003E9EF5 /* Kids.swift in Sources */,
+				FB9E2D1D1D2005B90072EBE4 /* KidTableViewCell.swift in Sources */,
 				FB2BA50D1D10A929003E9EF5 /* WordsViewController.swift in Sources */,
 				FBFF76921C3AE287002BEBC0 /* AppDelegate.swift in Sources */,
 				FB04C7B11C444AA6000F2C27 /* delay.swift in Sources */,
 				FBFF76E11C3B085F002BEBC0 /* MMDrawerBarButtonItem.m in Sources */,
 				FB2E4FF71C3EA9E1000CA8A3 /* Toast.swift in Sources */,
 				FBFF76E41C3B085F002BEBC0 /* UIViewController+MMDrawerController.m in Sources */,
-				FB2BA50B1D0DC583003E9EF5 /* KidTableViewCell.swift in Sources */,
 				FBFF76E61C3B1201002BEBC0 /* drawerTableViewCell.swift in Sources */,
+				FB9E2D1F1D2005D00072EBE4 /* WordTableViewCell.swift in Sources */,
 				FB2E4FFE1C41A517000CA8A3 /* SwiftyJSON.swift in Sources */,
 				FBFF76D51C3B06E6002BEBC0 /* LeftSideViewController.swift in Sources */,
 				FBFF76E21C3B085F002BEBC0 /* MMDrawerController.m in Sources */,

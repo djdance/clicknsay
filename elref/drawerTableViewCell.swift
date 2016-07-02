@@ -11,6 +11,7 @@ import UIKit
 class drawerTableViewCell: UITableViewCell {
     @IBOutlet weak var drawerItem: UILabel!
     @IBOutlet weak var ico: UILabel!
+    @IBOutlet weak var desc: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -22,11 +22,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         NSUserDefaults.standardUserDefaults().registerDefaults([
             "gameFirst" : false,
+            "currentKid" : -1,
             ])
         //print(NSUserDefaults.standardUserDefaults().dictionaryRepresentation())
 
         Realm.Configuration.defaultConfiguration = Realm.Configuration(
-            schemaVersion: 2,
+            schemaVersion: 3,
             migrationBlock: { migration, oldSchemaVersion in
                 migration.enumerate(Kids.className()) { oldObject, newObject in
                     if oldSchemaVersion < 1 {
@@ -34,6 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     if oldSchemaVersion < 2 {
                     }
                 }
+                
         })
         
         _ = self.window!.rootViewController

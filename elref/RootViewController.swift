@@ -7,7 +7,6 @@ class RootViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     @IBOutlet weak var drawerButton: UIBarButtonItem!
     @IBOutlet weak var rootTable: UITableView!
-    //@IBOutlet weak var KidssTableView: UITableView!
 
     var kids : Results<Kids>!
     var isEditingMode = false
@@ -17,6 +16,7 @@ class RootViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var currentIndexPath:NSIndexPath!
     var dateFormatter = NSDateFormatter()
     let imagePickerController = UIImagePickerController()
+    var currentKid = NSUserDefaults.standardUserDefaults().integerForKey("currentKid");
 
     
     override func viewDidLoad() {
@@ -251,6 +251,7 @@ class RootViewController: UIViewController, UITableViewDataSource, UITableViewDe
             cell.title.text = kid.name
             cell.title.shake(isEditingMode)
         cell.title.backgroundColor=isEditingMode ? UIColor.whiteColor() : UIColor.clearColor()
+        cell.title.userInteractionEnabled = isEditingMode
 
         cell.desc.text = "\(kid.words.count) words"
             //cell.lockLabel.hidden = true
@@ -337,23 +338,25 @@ class RootViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
 
     override func shouldPerformSegueWithIdentifier(identifier: String?, sender: AnyObject?) -> Bool {
-        if identifier == "pollSegue" {
+        if identifier == "wordsSegue" {
             if let selectedCell = sender as? KidTableViewCell {
                 let indexPath = rootTable.indexPathForCell(selectedCell)!
-                //if kids[indexPath.row/2]["done"].stringValue == "1"{
-                //    self.myToast("Отказ",msg: "Опрос уже пройден, устарел или закрыт")
-                //    return false
-                //}
+                print("wordsSegue row=\(indexPath.row)")
+                currentKid=indexPath.row
+                NSUserDefaults.standardUserDefaults().setInteger(currentKid, forKey: "currentKid")
+                //NSUserDefaults.standardUserDefaults().synchronize()
             } else {
                 return false
             }
         }
         return true
     }
+    /*
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         //print("prepareForSegue! \(segue.identifier)")
-        if segue.identifier == "pollSegue" {
-            /*
+        if segue.identifier == "wordsSegue" {
+            print("wordsSegue")
+            / *
             let pollDetailViewController = segue.destinationViewController as! WordViewController
             if let selectedCell = sender as? WordsTableViewCell {
                 let indexPath = rootTable.indexPathForCell(selectedCell)!
@@ -364,9 +367,9 @@ class RootViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 }
                 //print ("selected \(pollDetailViewController.poll)")
             }
-             */
+             * /
         }
-    }
+    }// */
 
 
     @IBAction func drawerMenuButton(sender: UIBarButtonItem) {
