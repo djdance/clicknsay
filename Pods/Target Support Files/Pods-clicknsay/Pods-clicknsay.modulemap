@@ -1,0 +1,6 @@
+framework module Pods_clicknsay {
+  umbrella header "Pods-clicknsay-umbrella.h"
+
+  export *
+  module * { export * }
+}
