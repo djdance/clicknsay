@@ -1,15 +1,17 @@
 import UIKit
 import RealmSwift
 
-class RootViewController: UIViewController, UITableViewDataSource, UITableViewDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate {
+class RootViewController: UIViewController, UITableViewDataSource, UITableViewDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate, DraggableCellDelegate {
     var drawerController: MMDrawerController!
     var gameFirst=NSUserDefaults.standardUserDefaults().boolForKey("gameFirst")
     
     @IBOutlet weak var drawerButton: UIBarButtonItem!
+    @IBOutlet weak var editButton: UIBarButtonItem!
     @IBOutlet weak var rootTable: UITableView!
+    @IBOutlet weak var collectionView: UICollectionView!
 
     var kids : Results<Kids>!
-    var isEditingMode = false
+    //var isEditingMode = false
     var currentCreateAction:UIAlertAction!
     var currentTextField1:UITextField!
     var currentTextField2:UITextField!
@@ -17,7 +19,19 @@ class RootViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var dateFormatter = NSDateFormatter()
     let imagePickerController = UIImagePickerController()
     var currentKid = NSUserDefaults.standardUserDefaults().integerForKey("currentKid");
-
+    
+    
+    //test
+    var pannedIndexPath: NSIndexPath?
+    var pannedView: UIImageView?
+    var dataValues:[Int] = {
+        var tmp = [Int]()
+        for i in 0 ..< 5 {
+            tmp.append(i)
+        }
+        return tmp
+    }()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +49,8 @@ class RootViewController: UIViewController, UITableViewDataSource, UITableViewDe
         //rootTable.estimatedRowHeight = 100.0;
         //rootTable.separatorInset=UIEdgeInsetsMake(20, 20, 20, 20)
         //rootTable.contentInset=UIEdgeInsetsMake(20, 20, 20, 20)
+        
+        collectionView.multipleTouchEnabled = false
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -44,23 +60,25 @@ class RootViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func readTasksAndUpdateUI(reload: Bool){
         kids = uiRealm.objects(Kids)
         if reload {
-            isEditingMode=false
+            editing=false
             self.rootTable.setEditing(false, animated: false)
             self.rootTable.reloadData()
             //self.rootTable.reloadSections(NSIndexSet(index: 0), withRowAnimation: UITableViewRowAnimation.Right)
         }
     }
     @IBAction func editButtonClick(sender: AnyObject) {
-        isEditingMode = !isEditingMode
-        if isEditingMode {
+        editing = !editing
+        if editing {
             self.rootTable.reloadData()
+            collectionView.reloadSections(NSIndexSet(index:0))
             delay(0.2) {
-                self.rootTable.setEditing(self.isEditingMode, animated: true)
+                self.rootTable.setEditing(self.editing, animated: true)
             }
         } else {
-            self.rootTable.setEditing(isEditingMode, animated: true)
+            self.rootTable.setEditing(editing, animated: true)
             delay(0.2) {
                 self.rootTable.reloadData()
+                self.collectionView.reloadSections(NSIndexSet(index:0))
             }
         }
     }
@@ -171,12 +189,12 @@ class RootViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func tableViewCellTitleClicked(cell: KidTableViewCell){
-        if isEditingMode {
+        if editing {
             displayAlertToAddTaskList(cell.indexPath!)
         }
     }
     func tableViewCellIcoClicked(cell: KidTableViewCell){
-        if isEditingMode {
+        if editing {
             self.currentIndexPath=cell.indexPath!
             Popups.SharedInstance.ShowAlert(self, title: "Выберите источник", message: "Откуда взять ваш снимок?", buttons: ["Сфотографировать" , "Из альбома"]) { (buttonPressed) -> Void in
                 //print("buttonPressed=\(buttonPressed)")
@@ -217,10 +235,12 @@ class RootViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
     }
     
-    // MARK: - UITableViewDataSource -
-    
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        if (kids) != nil && kids.count>0{
+
+// MARK: - UITableView
+
+func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    if (kids) != nil && kids.count>0{
+        
             self.rootTable.backgroundView=nil
             return 1
         } else {
@@ -249,9 +269,9 @@ class RootViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
             cell.desc.adjustsFontSizeToFitWidth=false
             cell.title.text = kid.name
-            cell.title.shake(isEditingMode)
-        cell.title.backgroundColor=isEditingMode ? UIColor.whiteColor() : UIColor.clearColor()
-        cell.title.userInteractionEnabled = isEditingMode
+            cell.title.shake(editing)
+        cell.title.backgroundColor=editing ? UIColor.whiteColor() : UIColor.clearColor()
+        cell.title.userInteractionEnabled = editing
 
         cell.desc.text = "\(kid.words.count) words"
             //cell.lockLabel.hidden = true
@@ -281,7 +301,7 @@ class RootViewController: UIViewController, UITableViewDataSource, UITableViewDe
         if let imageData=kid.ico {
             //print("imageData ok")
             var bottomImage=UIImage.init(data: imageData)!
-            if isEditingMode {
+            if editing {
                 let topImage: UIImage = UIImage( named: "recycle" )!
                 let w=min(bottomImage.size.width, bottomImage.size.height)
                 UIGraphicsBeginImageContext(bottomImage.size)
@@ -385,6 +405,176 @@ class RootViewController: UIViewController, UITableViewDataSource, UITableViewDe
             alert.show()
         })
     }
-
+    
+    
+    
+    // MARK: UICollectionViewDatasource
+    
+    func collectionView(collectionView: UICollectionView!, numberOfItemsInSection section: Int) -> Int {
+        return dataValues.count
+    }
+    
+    func collectionView(collectionView: UICollectionView!, cellForItemAtIndexPath indexPath: NSIndexPath!) ->
+        UICollectionViewCell! {
+            let cell = collectionView.dequeueReusableCellWithReuseIdentifier("defaultCell", forIndexPath: indexPath) as! DraggableCell
+            cell.delegate = self
+            cell.tag = indexPath.item
+            cell.label.text = dataValues[indexPath.item].description
+            if editing {
+                cell.deleteButton.hidden = false
+            } else {
+                cell.deleteButton.hidden = true
+            }
+            cell.editing = editing
+            return cell
+    }
+    
+    // MARK: DraggableCellDelegate
+    
+    func draggableCellDeleteButtonTapped(cell: DraggableCell) {
+        // delete
+        if let path = collectionView.indexPathForCell(cell) {
+            dataValues.removeAtIndex(path.item)
+            collectionView.performBatchUpdates({
+                self.collectionView.deleteItemsAtIndexPaths([ path ])
+                }, completion: { succes in self.collectionView.reloadData() })
+        }
+    }
+    
+    func draggableCell(cell: DraggableCell, pannedWithGestureRecognizer gestureRecognizer:UIPanGestureRecognizer) {
+        if !editing {
+            return
+        }
+        
+        if gestureRecognizer.state == .Began {
+            if pannedIndexPath != nil {
+                return
+            }
+            let point = gestureRecognizer.locationInView(collectionView)
+            if let path = collectionView.indexPathForItemAtPoint(point) {
+                cell.hidden = true
+                pannedIndexPath = path
+                
+                // create image for dragging
+                UIGraphicsBeginImageContextWithOptions(cell.frame.size, cell.opaque, 0)
+                cell.contentView.layer.renderInContext(UIGraphicsGetCurrentContext()!)
+                let image = UIGraphicsGetImageFromCurrentImageContext()
+                UIGraphicsEndImageContext()
+                
+                // and add
+                pannedView = UIImageView(image: image)
+                pannedView!.backgroundColor = UIColor.whiteColor()
+                pannedView!.layer.borderColor = cell.layer.borderColor
+                pannedView!.layer.borderWidth = cell.layer.borderWidth
+                pannedView!.center = gestureRecognizer.locationInView(self.view)
+                self.view.addSubview(pannedView!)
+            }
+            
+        } else if gestureRecognizer.state == .Changed {
+            if pannedIndexPath == nil {
+                return
+            }
+            
+            let destPoint = gestureRecognizer.locationInView(self.view)
+            pannedView!.center = destPoint
+            
+            let point = gestureRecognizer.locationInView(collectionView)
+            if let indexPath = collectionView.indexPathForItemAtPoint(point) {
+                if indexPath != pannedIndexPath {
+                    // replace
+                    let moved = dataValues.removeAtIndex(pannedIndexPath!.item)
+                    dataValues.insert(moved, atIndex: indexPath.item)
+                    
+                    collectionView.moveItemAtIndexPath(pannedIndexPath!, toIndexPath: indexPath)
+                    pannedIndexPath = indexPath
+                }
+            }
+            
+            // scroll if necessary
+            let visibleItems = collectionView.indexPathsForVisibleItems()
+            if visibleItems.count > 0 {
+                let visibles = NSArray(array: visibleItems)
+                let sorted = NSArray(array: visibles.sortedArrayUsingDescriptors([ NSSortDescriptor(key: "item", ascending: true) ]))
+                
+                if destPoint.y > CGRectGetHeight(self.view.frame) - 50 {
+                    let lastPath = sorted.lastObject as! NSIndexPath
+                    if lastPath.item + 1 < dataValues.count {
+                        // scroll forward
+                        let attr = collectionView.collectionViewLayout.layoutAttributesForItemAtIndexPath(lastPath)
+                        var rect = attr!.frame
+                        rect.origin.y += 100
+                        
+                        collectionView.scrollRectToVisible(rect, animated: true)
+                    }
+                    
+                } else if destPoint.y < 150 {
+                    // scroll upward
+                    let firstPath = sorted.firstObject as! NSIndexPath
+                    let attr = collectionView!.collectionViewLayout.layoutAttributesForItemAtIndexPath(firstPath)
+                    var rect = attr!.frame
+                    rect.origin.y -= 100
+                    
+                    if rect.origin.y >= 0 {
+                        collectionView.scrollRectToVisible(rect, animated: true)
+                    }
+                }
+            }
+        } else {
+            // end dragging
+            cell.hidden = false
+            pannedView?.removeFromSuperview()
+            pannedView = nil
+            pannedIndexPath = nil
+        }
+    }
 }
+// END of main class RootViewController
+
+
+
+
+// MARK: DraggableCellDelegate
+@objc protocol DraggableCellDelegate {
+    optional func draggableCellDeleteButtonTapped(cell: DraggableCell)
+    optional func draggableCell(cell: DraggableCell, pannedWithGestureRecognizer gestureRecognizer:UIPanGestureRecognizer)
+}
+
+// MARK: DraggableCell
+class DraggableCell : UICollectionViewCell, UIGestureRecognizerDelegate {
+    @IBOutlet weak var deleteButton: UIButton!
+    @IBOutlet weak var label: UILabel!
+    weak var delegate: DraggableCellDelegate?
+    var editing = false
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        //self.layer.borderColor = UIColor.lightGrayColor().CGColor
+        //self.layer.borderWidth = 1.0
+        self.layer.cornerRadius = 15
+        self.layer.masksToBounds = true
+        
+        let gesture = UIPanGestureRecognizer(target: self, action: #selector(DraggableCell.panAction(_:)))
+        gesture.delegate = self
+        self.addGestureRecognizer(gesture)
+    }
+    
+    override func awakeFromNib() {
+        deleteButton.transform = CGAffineTransformMakeRotation(CGFloat(45 * M_PI / 180))
+    }
+    
+    func panAction(gesture: UIPanGestureRecognizer) {
+        delegate?.draggableCell?(self, pannedWithGestureRecognizer: gesture)
+    }
+    
+    @IBAction func deleteAction(button: UIButton) {
+        delegate?.draggableCellDeleteButtonTapped?(self)
+    }
+    
+    // MARK: UIGestureRecognizerDelegate
+    func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldRequireFailureOfGestureRecognizer otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return !editing;
+    }
+    
+}
+
 
